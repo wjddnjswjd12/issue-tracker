@@ -1,5 +1,8 @@
+import { useEffect } from "react";
+import { useResetRecoilState } from "recoil";
 import Modal from "@/Components/AtomicComponents/Modal/Modal";
 import { FilterSearchBar as S } from "../../HomeStyles";
+import { filterModalOpenState } from "@/Components/Home/HomeStore";
 
 const FilterModal = () => {
   const mock = [
@@ -10,8 +13,20 @@ const FilterModal = () => {
     "닫힌 이슈",
   ];
 
+  const resetIssueModalState = useResetRecoilState(filterModalOpenState);
+
+  useEffect(() => {
+    const handleIssueModalOutClick = ({ target }: MouseEvent) => {
+      const checkModal = (target as HTMLElement).closest(".filterModal");
+      if (!checkModal) resetIssueModalState();
+    };
+    document.addEventListener("click", handleIssueModalOutClick);
+    return () =>
+      document.removeEventListener("click", handleIssueModalOutClick);
+  }, []);
+
   return (
-    <S.FilterModalDiv>
+    <S.FilterModalDiv className="filterModal">
       <Modal modalTitle="이슈" modalDataArray={mock} />
     </S.FilterModalDiv>
   );

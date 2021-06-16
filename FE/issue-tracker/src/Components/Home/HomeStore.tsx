@@ -20,7 +20,7 @@ export const filterModalOpenState = atom({
 });
 
 export const IssueModalState = atom({
-  key: "ISsueModalState",
+  key: "IssueModalState",
   default: false,
 });
 
