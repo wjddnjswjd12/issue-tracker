@@ -30,7 +30,7 @@ export const categoryModalOpenState = atom<{
 }>({
   key: "categoryModalOpenState",
   default: {
-    openedModalTitle: "담당자",
+    openedModalTitle: "",
     isOpen: false,
   },
 });

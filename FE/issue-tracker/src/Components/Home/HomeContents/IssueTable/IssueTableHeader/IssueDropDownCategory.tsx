@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue, useResetRecoilState } from "recoil";
 import { IssueTable as S, HomeAssets as Icon } from "../../../HomeStyles";
 import DropDown from "./DropDown/DropDown";
 import {
@@ -17,6 +17,8 @@ const IssueDropDownCategory = () => {
     categoryModalOpenState
   );
 
+  const resetCategModalState = useResetRecoilState(categoryModalOpenState);
+
   const [editIssueModalState, setEditIssueModalState] = useRecoilState(
     editOpenCloseIssueModalState
   );
@@ -24,11 +26,11 @@ const IssueDropDownCategory = () => {
   const [issueModalState, setIssueModalState] = useRecoilState(IssueModalState);
 
   const checkedItemsCount = useRecoilValue(checkedItemState);
-  console.log("크기", checkedItemsCount);
+
   const handleCategClick = (e: React.MouseEvent<HTMLDivElement>) => {
     setCategModalOpenState({
       openedModalTitle: (e.target as HTMLElement).dataset.title,
-      isOpen: !categModalOpenState.isOpen,
+      isOpen: true,
     });
   };
 
