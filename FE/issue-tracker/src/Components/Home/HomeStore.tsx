@@ -9,7 +9,6 @@ export const checkedItemsCountState = selector({
   key: "checkedItemsCountState",
   get: ({ get }) => {
     const checkedItems = get(checkedItemState);
-
     return checkedItems.size;
   },
 });
@@ -20,7 +19,7 @@ export const filterModalOpenState = atom({
 });
 
 export const IssueModalState = atom({
-  key: "ISsueModalState",
+  key: "IssueModalState",
   default: false,
 });
 
@@ -30,7 +29,7 @@ export const categoryModalOpenState = atom<{
 }>({
   key: "categoryModalOpenState",
   default: {
-    openedModalTitle: "담당자",
+    openedModalTitle: "",
     isOpen: false,
   },
 });
@@ -55,4 +54,9 @@ interface IssueObj {
 export const IssueList = atom<IssueObj[]>({
   key: "IssueList",
   default: [],
+});
+
+export const searchBarValue = atom<any[]>({
+  key: "searchBarValue",
+  default: ["is:issue", "", ""],
 });

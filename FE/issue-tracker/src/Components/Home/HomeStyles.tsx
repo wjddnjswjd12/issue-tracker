@@ -79,6 +79,7 @@ const FilterSearchBar = {
     height: 28px;
     background: none;
     border: none;
+    color: ${theme.GRAY_SCALE.PLACEHOLDER};
     &::placeholder {
       color: ${theme.GRAY_SCALE.PLACEHOLDER};
       font-size: ${theme.FONT_SIZE.TEXT_SMALL};

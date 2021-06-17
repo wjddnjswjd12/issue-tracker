@@ -24,11 +24,11 @@ const IssueDropDownCategory = () => {
   const [issueModalState, setIssueModalState] = useRecoilState(IssueModalState);
 
   const checkedItemsCount = useRecoilValue(checkedItemState);
-  console.log("크기", checkedItemsCount);
+
   const handleCategClick = (e: React.MouseEvent<HTMLDivElement>) => {
     setCategModalOpenState({
       openedModalTitle: (e.target as HTMLElement).dataset.title,
-      isOpen: !categModalOpenState.isOpen,
+      isOpen: true,
     });
   };
 
@@ -52,8 +52,8 @@ const IssueDropDownCategory = () => {
           {issueModalState && <StateDropDown />}
         </S.ThModalWrapDiv>
       ) : (
-        modalTitleMock.map((modalTitle) => (
-          <S.ThModalWrapDiv>
+        modalTitleMock.map((modalTitle, i) => (
+          <S.ThModalWrapDiv key={i}>
             <S.TableTh data-title={modalTitle} onClick={handleCategClick}>
               {modalTitle}
               <Icon.Down />

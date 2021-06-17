@@ -1,4 +1,4 @@
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { AddNewModal as S, TabAssets as Icon } from "../../TabStyles";
 import {
   addNewLabelTitleState,
@@ -20,8 +20,7 @@ const LabelAddModal = () => {
     addNewLabelBackgroundState
   );
 
-  const [newLabelFontColor, setNewLabelFontColor] =
-    useRecoilState(addnewLabelFontColor);
+  const setNewLabelFontColor = useSetRecoilState(addnewLabelFontColor);
 
   const handleLabelTitleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewLabelTitleState(e.target.value);
