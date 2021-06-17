@@ -1,15 +1,22 @@
-import React from "react";
+import { useRecoilValue } from "recoil";
+import { checkedItemState } from "../../../HomeStore";
 import { IssueTable as S } from "../../../HomeStyles";
 import IssueDropDownCategory from "./IssueDropDownCategory";
 import IssueToggleCategory from "./IssueToggleCategory";
 import TotalIssueCheckButton from "./TotalIssueCheckButton";
 
 const IssueTableHeader = () => {
+  const checkedState = useRecoilValue(checkedItemState);
+
   return (
     <S.TableHeader>
       <S.TableHeaderLeft>
         <TotalIssueCheckButton />
-        <IssueToggleCategory />
+        {checkedState.size ? (
+          <>{`${checkedState.size}개`}</>
+        ) : (
+          <IssueToggleCategory />
+        )}
       </S.TableHeaderLeft>
       <IssueDropDownCategory />
     </S.TableHeader>
