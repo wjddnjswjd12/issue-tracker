@@ -25,7 +25,7 @@ const DropDown = ({ modalTitle }: dropDownProps) => {
     };
     document.addEventListener("click", handleModalOutClick);
     return () => document.removeEventListener("click", handleModalOutClick);
-  }, []);
+  });
 
   return (
     <S.TableCategoryModal className="categModal">

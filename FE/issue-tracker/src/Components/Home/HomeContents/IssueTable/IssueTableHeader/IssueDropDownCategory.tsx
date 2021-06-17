@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useRecoilState, useRecoilValue, useResetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { IssueTable as S, HomeAssets as Icon } from "../../../HomeStyles";
 import DropDown from "./DropDown/DropDown";
 import {
@@ -16,8 +16,6 @@ const IssueDropDownCategory = () => {
   const [categModalOpenState, setCategModalOpenState] = useRecoilState(
     categoryModalOpenState
   );
-
-  const resetCategModalState = useResetRecoilState(categoryModalOpenState);
 
   const [editIssueModalState, setEditIssueModalState] = useRecoilState(
     editOpenCloseIssueModalState
@@ -54,8 +52,8 @@ const IssueDropDownCategory = () => {
           {issueModalState && <StateDropDown />}
         </S.ThModalWrapDiv>
       ) : (
-        modalTitleMock.map((modalTitle) => (
-          <S.ThModalWrapDiv>
+        modalTitleMock.map((modalTitle, i) => (
+          <S.ThModalWrapDiv key={i}>
             <S.TableTh data-title={modalTitle} onClick={handleCategClick}>
               {modalTitle}
               <Icon.Down />

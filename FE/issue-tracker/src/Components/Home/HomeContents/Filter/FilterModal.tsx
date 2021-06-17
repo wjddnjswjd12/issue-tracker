@@ -6,11 +6,11 @@ import { filterModalOpenState } from "@/Components/Home/HomeStore";
 
 const FilterModal = () => {
   const mock = [
-    "열린 이슈",
-    "내가 작성한 이슈",
-    "나에게 할당된 이슈",
-    "내가 댓글을 남긴 이슈",
-    "닫힌 이슈",
+    { type: "open", content: "열린 이슈" },
+    { type: "writer", content: "내가 작성한 이슈" },
+    { type: "assignee", content: "나에게 할당된 이슈" },
+    { type: "comment", content: "내가 댓글을 남긴 이슈" },
+    { type: "close", content: "닫힌 이슈" },
   ];
 
   const resetIssueModalState = useResetRecoilState(filterModalOpenState);
@@ -23,11 +23,11 @@ const FilterModal = () => {
     document.addEventListener("click", handleIssueModalOutClick);
     return () =>
       document.removeEventListener("click", handleIssueModalOutClick);
-  }, []);
+  });
 
   return (
     <S.FilterModalDiv className="filterModal">
-      <Modal modalTitle="이슈" modalDataArray={mock} />
+      <Modal modalTitle="이슈" modalDataArray={mock} modalType="filter" />
     </S.FilterModalDiv>
   );
 };

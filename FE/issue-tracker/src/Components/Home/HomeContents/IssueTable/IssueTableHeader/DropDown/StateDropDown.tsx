@@ -17,7 +17,7 @@ const StateDropDown = () => {
     document.addEventListener("click", handleIssueModalOutClick);
     return () =>
       document.removeEventListener("click", handleIssueModalOutClick);
-  }, []);
+  });
 
   return (
     <S.TableCategoryModal className="stateModal">

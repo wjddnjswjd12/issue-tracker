@@ -37,7 +37,8 @@ const Modal = {
     border-radius: 16px 16px 0 0;
   `,
 
-  ModalItemDiv: styled(BOX.FLEX_ROW_BOX)`
+  ModalItemDiv: styled.label`
+    display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 16px;

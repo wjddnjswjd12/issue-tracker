@@ -9,7 +9,6 @@ export const checkedItemsCountState = selector({
   key: "checkedItemsCountState",
   get: ({ get }) => {
     const checkedItems = get(checkedItemState);
-
     return checkedItems.size;
   },
 });
@@ -55,4 +54,9 @@ interface IssueObj {
 export const IssueList = atom<IssueObj[]>({
   key: "IssueList",
   default: [],
+});
+
+export const searchBarValue = atom<any[]>({
+  key: "searchBarValue",
+  default: ["is:issue", "", ""],
 });
