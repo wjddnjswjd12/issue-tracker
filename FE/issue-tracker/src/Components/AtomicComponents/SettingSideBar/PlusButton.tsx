@@ -12,14 +12,24 @@ const PlusButton = ({ id }: Props) => {
   const setAssigneeShowFlag = useSetRecoilState(showDropDownState.assignee);
   const setLabelShowFlag = useSetRecoilState(showDropDownState.label);
   const setMileStoneShowFlag = useSetRecoilState(showDropDownState.mileStone);
+  const setBackgroundShowFlag = useSetRecoilState(showDropDownState.background);
 
   const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    setBackgroundShowFlag(true);
     const clicked = (e.target as HTMLElement).closest(`#${id}`);
-    if ((clicked as HTMLElement).id === "담당자")
+    if ((clicked as HTMLElement).id === "담당자") {
       setAssigneeShowFlag((prev) => !prev);
-    else if ((clicked as HTMLElement).id === "레이블")
+      setLabelShowFlag(false);
+      setMileStoneShowFlag(false);
+    } else if ((clicked as HTMLElement).id === "레이블") {
       setLabelShowFlag((prev) => !prev);
-    else setMileStoneShowFlag((prev) => !prev);
+      setAssigneeShowFlag(false);
+      setMileStoneShowFlag(false);
+    } else {
+      setMileStoneShowFlag((prev) => !prev);
+      setAssigneeShowFlag(false);
+      setLabelShowFlag(false);
+    }
   };
 
   return (
