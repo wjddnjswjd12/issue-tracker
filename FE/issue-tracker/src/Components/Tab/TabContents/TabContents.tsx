@@ -1,7 +1,7 @@
 import { LabelMilestoneTable as S } from "../TabStyles";
 import TabContentRow from "./TabContentRow/TabContentRow";
 import TabContentsHeader from "./TabContentsHeader";
-import { currentTabState } from "../TabStore";
+import { currentTabState } from "../../../stores/TabAtoms";
 import { useRecoilValue } from "recoil";
 
 const TabContents = () => {

@@ -1,5 +1,5 @@
 import { AddNewModal as S, TabAssets as Icon } from "../../TabStyles";
-import { toggleEditLabelState } from "../../TabStore";
+import { toggleEditLabelState } from "../../../../stores/TabAtoms";
 import { useSetRecoilState } from "recoil";
 import EditLabelView from "./EditLabelView";
 

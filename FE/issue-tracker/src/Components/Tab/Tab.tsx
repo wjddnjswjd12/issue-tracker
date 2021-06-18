@@ -7,7 +7,7 @@ import {
   toggleAddNewLabelState,
   toggleAddNewMilestoneState,
   currentTabState,
-} from "./TabStore";
+} from "../../stores/TabAtoms";
 import LabelAddModal from "./TabModal/Label/LabelAddModal";
 import MilestoneAddModal from "./TabModal/Milestone/MilestoneAddModal";
 

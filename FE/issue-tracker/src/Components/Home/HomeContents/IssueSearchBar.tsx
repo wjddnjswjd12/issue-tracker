@@ -1,5 +1,5 @@
 import { useRecoilValue } from "recoil";
-import { searchBarValue } from "../HomeStore";
+import { searchBarValue } from "../../../stores/HomeAtoms";
 import {
   Home as S,
   FilterSearchBar as SB,

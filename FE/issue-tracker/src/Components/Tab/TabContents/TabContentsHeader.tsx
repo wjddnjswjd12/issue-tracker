@@ -1,6 +1,6 @@
 import { useRecoilValue } from "recoil";
 import { LabelMilestoneTable as S, TabAssets as Icon } from "../TabStyles";
-import { currentTabState } from "../TabStore";
+import { currentTabState } from "../../../stores/TabAtoms";
 
 const TabContentsHeader = () => {
   const tabState = useRecoilValue(currentTabState);

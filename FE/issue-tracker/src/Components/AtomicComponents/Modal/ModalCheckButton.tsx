@@ -1,5 +1,5 @@
 import { useSetRecoilState } from "recoil";
-import { searchBarValue } from "@/Components/Home/HomeStore";
+import { searchBarValue } from "@/stores/HomeAtoms";
 
 const ModalCheckButton = ({ data }: any) => {
   const setSearchBarString = useSetRecoilState(searchBarValue);
