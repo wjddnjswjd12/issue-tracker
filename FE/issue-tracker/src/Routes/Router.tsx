@@ -10,11 +10,11 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={MainPage} />
-        <Route path="/login" component={Login} />
-        <Route path="/tab" component={Tab} />
-        <Route path="/issueDetail" component={IssueDetail} />
-        <Route path="/newIssue" component={NewIssue} />
+        <Route exact path="/issue" component={MainPage} />
+        <Route exact path="/" component={Login} />
+        <Route path="/issue/tab" component={Tab} />
+        <Route path="/issue/detail" component={IssueDetail} />
+        <Route path="/issue/new" component={NewIssue} />
         <Route path="/callback" component={Callback} />
         <Redirect from="*" to="/" />
       </Switch>

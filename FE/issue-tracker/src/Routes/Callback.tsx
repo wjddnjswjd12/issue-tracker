@@ -18,6 +18,7 @@ const Callback = ({ history, location }: callbackProps) => {
 
         // setLoginState 해야함
         // setUserInfo 해야함
+        history.push("/issue");
       } catch (e) {
         //
       }
