@@ -4,7 +4,7 @@ import {
   addNewLabelTitleState,
   addNewLabelBackgroundState,
   addnewLabelFontColor,
-} from "../../TabStore";
+} from "../../../../stores/TabAtoms";
 
 const NewLabelView = () => {
   const labelTitle = useRecoilValue(addNewLabelTitleState);

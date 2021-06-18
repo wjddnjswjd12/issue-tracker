@@ -5,7 +5,7 @@ import {
   addNewLabelDescriptionState,
   addNewLabelBackgroundState,
   addnewLabelFontColor,
-} from "../../TabStore";
+} from "../../../../stores/TabAtoms";
 import NewLabelView from "./NewLabelView";
 
 const LabelAddModal = () => {

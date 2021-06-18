@@ -7,7 +7,7 @@ import {
   toggleEditLabelState,
   currentTabState,
   toggleEditMilestoneState,
-} from "../../TabStore";
+} from "../../../../stores/TabAtoms";
 import { useRecoilValue } from "recoil";
 import LabelEditModal from "../../TabModal/Label/LabelEditModal";
 import ContentTitle from "./ContentTitle";

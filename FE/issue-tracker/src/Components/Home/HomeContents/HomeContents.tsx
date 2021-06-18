@@ -1,4 +1,4 @@
-import React from "react";
+import { Link } from "react-router-dom";
 import { Home as S } from "../HomeStyles";
 import CreateIssueButton from "./CreateIssueButton";
 import IssueSearchBar from "./IssueSearchBar";
@@ -12,13 +12,15 @@ const HomeContents = () => {
       <S.ContentNavDiv>
         <IssueSearchBar />
         <S.ContentNavRight>
-          <S.ButtonGroup
-            color="primary"
-            aria-label="outlined primary button group"
-          >
-            <LabelButton />
-            <MileStoneButton />
-          </S.ButtonGroup>
+          <Link to="/issue/tab">
+            <S.ButtonGroup
+              color="primary"
+              aria-label="outlined primary button group"
+            >
+              <LabelButton />
+              <MileStoneButton />
+            </S.ButtonGroup>
+          </Link>
           <CreateIssueButton />
         </S.ContentNavRight>
       </S.ContentNavDiv>

@@ -7,7 +7,7 @@ import {
   editOpenCloseIssueModalState,
   checkedItemState,
   IssueModalState,
-} from "../../../HomeStore";
+} from "../../../../../stores/HomeAtoms";
 import StateDropDown from "./DropDown/StateDropDown";
 
 const IssueDropDownCategory = () => {

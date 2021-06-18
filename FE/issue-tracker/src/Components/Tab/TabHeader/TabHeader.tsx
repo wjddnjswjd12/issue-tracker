@@ -1,7 +1,7 @@
 import { TabComponents as S, TabAssets as Icon } from "../TabStyles";
 import AddTabButton from "./AddTabButton";
 import { useSetRecoilState } from "recoil";
-import { currentTabState } from "../TabStore";
+import { currentTabState } from "../../../stores/TabAtoms";
 
 const TabHeader = () => {
   const setTabState = useSetRecoilState(currentTabState);
