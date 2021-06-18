@@ -27,8 +27,8 @@
 
 - ### [Notion](https://www.notion.so/Team10-bff0225e70674565aa149acd6d320c77)
 - ### [Team Convention](https://github.com/swing-park/issue-tracker/wiki)
-- ### [iOS 데모 화면]()
-- ### [FE 데모 화면]()
+- ### [iOS 데모 화면](https://github.com/swing-park/issue-tracker/issues/74)
+- ### [FE 데모 화면](https://github.com/swing-park/issue-tracker/issues/73)
 
 ---
 
