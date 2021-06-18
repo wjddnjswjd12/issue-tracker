@@ -304,9 +304,20 @@ const AddNewModal = {
     }
   `,
 
+  ColorPicker: styled.input`
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+  `,
+
+  ColorPickerDiv: styled.div`
+    position: relative;
+  `,
+
   ColorTitle: styled(BOX.FLEX_ROW_BOX)`
     align-items: center;
-    width: 70px;
+    width: 65px;
     height: 40px;
     color: ${theme.GRAY_SCALE.LABEL};
     font-size: ${theme.FONT_SIZE.TEXT_X_SMALL};

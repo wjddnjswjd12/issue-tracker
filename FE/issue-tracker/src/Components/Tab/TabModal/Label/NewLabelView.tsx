@@ -14,8 +14,8 @@ const NewLabelView = () => {
   const checkValidColor = (str: string) => {
     let s = new Option().style;
     s.color = str;
-
-    return s.color === str.toLowerCase();
+    if (s.color === str || /^#[0-9A-F]{6}$/i.test(str)) return true;
+    else return false;
   };
 
   return (

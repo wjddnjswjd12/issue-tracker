@@ -45,6 +45,10 @@ const LabelAddModal = () => {
     setNewLabelFontColor(e.target.dataset.color);
   };
 
+  const handleLabelColorInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNewLabelBackgroundState((e.target as HTMLInputElement).value);
+  };
+
   return (
     <S.AddModalDiv isLabel={true}>
       <S.AddModalTitle>새로운 레이블 추가</S.AddModalTitle>
@@ -75,7 +79,16 @@ const LabelAddModal = () => {
                   onChange={handleLabelBackgroundInput}
                 />
               </S.BackgroundColorContent>
-              <Icon.RefreshIcon />
+              <S.ColorPickerDiv>
+                <label>
+                  <Icon.RefreshIcon />
+                  <S.ColorPicker
+                    type="color"
+                    onChange={handleLabelColorInput}
+                    value={newLabelBackgroundState}
+                  ></S.ColorPicker>
+                </label>
+              </S.ColorPickerDiv>
             </S.ChangeBackgroundDiv>
             <S.ChangeFontColorDiv>
               <S.ColorTitle>텍스트 색상</S.ColorTitle>
