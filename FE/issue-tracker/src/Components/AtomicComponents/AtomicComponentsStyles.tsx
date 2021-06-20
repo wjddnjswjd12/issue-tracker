@@ -10,7 +10,12 @@ const AvatarDiv = styled(Avatar)<{ size?: number }>`
   `};
 `;
 
-const LabelDiv = styled(Chip)<{ fontcolor?: string; backgroundcolor?: string }>`
+type LabelDivProp = {
+  fontcolor?: string;
+  backgroundcolor?: string;
+};
+
+const LabelDiv = styled(Chip)<LabelDivProp>`
   color: ${({ fontcolor }) => (fontcolor ? fontcolor : "black")};
   background-color: ${({ backgroundcolor }) =>
     backgroundcolor ? backgroundcolor : "gray"};

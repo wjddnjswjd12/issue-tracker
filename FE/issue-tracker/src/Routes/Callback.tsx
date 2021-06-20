@@ -1,11 +1,7 @@
 import { useEffect } from "react";
+import { withRouter, RouteComponentProps } from "react-router-dom";
 
-type callbackProps = {
-  history: any;
-  location: any;
-};
-
-const Callback = ({ history, location }: callbackProps) => {
+const Callback = ({ history, location }: RouteComponentProps) => {
   useEffect(() => {
     const getToken = async () => {
       let params = new URLSearchParams(location.search);
@@ -13,7 +9,7 @@ const Callback = ({ history, location }: callbackProps) => {
 
       try {
         const jwt_token = await fetch(
-          `url/user/login/oauth/github/code=${code}`
+          `/user/login/oauth/github/code=${code}`
         ).then((res) => res.json());
 
         // setLoginState 해야함
@@ -30,4 +26,4 @@ const Callback = ({ history, location }: callbackProps) => {
   return null;
 };
 
-export default Callback;
+export default withRouter(Callback);
