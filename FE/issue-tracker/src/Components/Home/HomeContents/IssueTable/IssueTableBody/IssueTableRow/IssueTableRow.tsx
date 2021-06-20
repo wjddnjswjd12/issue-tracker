@@ -13,13 +13,18 @@ interface IssueObj {
   id: number;
   title: string;
   number: number;
-  writer: string;
-  created_time: number;
+  author: authorType;
+  created_time: string;
   milestone: string;
   isOpen: boolean;
   asignee: object[];
   label: object[];
 }
+
+type authorType = {
+  name: string;
+  id: number;
+};
 
 const IssueTableRow = ({ issue }: IssueTableRowProps) => {
   return (
@@ -31,7 +36,11 @@ const IssueTableRow = ({ issue }: IssueTableRowProps) => {
             <IssueTitle issueTitle={issue.title} />
             <IssueLabel />
           </S.IssueInfoTop>
-          <IssueDescription />
+          <IssueDescription
+            issueNumber={issue.number}
+            author={issue.author}
+            createdTime={issue.created_time}
+          />
         </S.IssueInfoDiv>
       </S.TableRowLeft>
       <IssueDropDownSymbol />

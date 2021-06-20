@@ -3,11 +3,30 @@ import {
   HomeAssets as Icon,
 } from "@/Components/Home/HomeStyles";
 
-const IssueDescription = () => {
+type IssueDescriptionProps = {
+  issueNumber: number;
+  author: authorType;
+  createdTime: string;
+};
+
+type authorType = {
+  name: string;
+  id: number;
+};
+
+const IssueDescription = ({
+  issueNumber,
+  author,
+  createdTime,
+}: IssueDescriptionProps) => {
+  console.log(author);
   return (
     <S.IssueInfoBottom>
-      <span>#이슈번호</span>
-      <span>작성자 및 타임스탬프 정보</span>
+      <span>{issueNumber}</span>
+      <span>
+        {author.name}
+        {createdTime}
+      </span>
       <span>
         <Icon.MilestoneTag />
         마일스톤

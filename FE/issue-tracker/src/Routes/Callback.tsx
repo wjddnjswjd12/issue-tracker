@@ -9,7 +9,7 @@ const Callback = ({ history, location }: RouteComponentProps) => {
 
       try {
         const jwt_token = await fetch(
-          `url/user/login/oauth/github/code=${code}`
+          `/user/login/oauth/github/code=${code}`
         ).then((res) => res.json());
 
         // setLoginState 해야함
