@@ -2,6 +2,7 @@ package com.codesquad.issuetracker.service;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.codesquad.issuetracker.domain.User;
+import com.codesquad.issuetracker.dto.UserDTO;
 import com.codesquad.issuetracker.dto.UserInfo;
 import com.codesquad.issuetracker.exception.TokenNotValidException;
 import com.codesquad.issuetracker.exception.UserNotFoundException;
@@ -11,8 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -26,6 +29,16 @@ public class UserService {
 
     public User findByEmail(String email) {
         return userRepository.findByEmail(email).orElseThrow(UserNotFoundException::new);
+    }
+
+    public List<UserDTO> findAll() {
+        return userRepository.findAll().stream()
+                .map(UserDTO::of)
+                .collect(Collectors.toList());
+    }
+
+    public List<User> findAllUsersByIds(List<Long> ids) {
+        return userRepository.findByIdIn(ids);
     }
 
     public User findById(Long id) {
