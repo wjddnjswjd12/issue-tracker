@@ -14,12 +14,14 @@ const useFetch = <T>(path: string) => {
     API.get(path)
       .then((res) => res.json())
       .then((response) => {
-        setLoading(false);
-        setData(response.data);
+        setTimeout(() => {
+          setLoading(false);
+          setData(response.data);
+        }, 1000);
       })
       .catch((error) => {
         setLoading(false);
-        setError("에러가 발생했습니다.");
+        setError(`에러가 발생했습니다. error status: ${error}`);
       });
   }, [path]);
 

@@ -9,7 +9,7 @@ export type milestoneType = {
 };
 
 export type labelType = {
-  title: String | undefined;
-  description: String | undefined;
-  color: String | undefined;
+  title: string | undefined;
+  description: string | undefined;
+  color: string | undefined;
 };

@@ -18,10 +18,11 @@ import { milestoneType, labelType } from "../../TabTypes";
 
 type tabContentProp = {
   id: number;
-  rowData?: milestoneType;
+  milestoneData?: milestoneType;
+  labelData?: labelType;
 };
 
-const TabContentRow = ({ id, rowData }: tabContentProp) => {
+const TabContentRow = ({ id, milestoneData, labelData }: tabContentProp) => {
   const EditLabelState = useRecoilValue(toggleEditLabelState);
   const EditMilestoneState = useRecoilValue(toggleEditMilestoneState);
 
@@ -34,22 +35,7 @@ const TabContentRow = ({ id, rowData }: tabContentProp) => {
           {EditLabelState.isOpen && id === EditLabelState.rowId ? (
             <LabelEditModal id={id} />
           ) : (
-            <S.TableRow>
-              <S.TableRowContentLeft>
-                <S.LabelWrapper>
-                  <Label
-                    label="JennyJJang"
-                    fontcolor="white"
-                    backgroundcolor="green"
-                  />
-                </S.LabelWrapper>
-                <ContentDescription />
-              </S.TableRowContentLeft>
-              <S.TableRowButtonDiv>
-                <EditButton id={id} />
-                <DeleteButton />
-              </S.TableRowButtonDiv>
-            </S.TableRow>
+            <LabelRow id={id} labelData={labelData} />
           )}
         </>
       ) : (
@@ -57,7 +43,7 @@ const TabContentRow = ({ id, rowData }: tabContentProp) => {
           {EditMilestoneState.isOpen && id === EditMilestoneState.rowId ? (
             <MilestoneEditModal id={id} />
           ) : (
-            <MilestoneRow id={id} rowData={rowData} />
+            <MilestoneRow id={id} milestoneData={milestoneData} />
           )}
         </>
       )}
@@ -65,13 +51,37 @@ const TabContentRow = ({ id, rowData }: tabContentProp) => {
   );
 };
 
-const MilestoneRow = ({ id, rowData }: tabContentProp) => {
+const LabelRow = ({ id, labelData }: tabContentProp) => {
+  return (
+    <S.TableRow>
+      <S.TableRowContentLeft>
+        <S.LabelWrapper>
+          <Label
+            label={labelData?.title}
+            fontcolor="white"
+            backgroundcolor={labelData?.color}
+          />
+        </S.LabelWrapper>
+        <ContentDescription description={labelData?.description} />
+      </S.TableRowContentLeft>
+      <S.TableRowButtonDiv>
+        <EditButton id={id} />
+        <DeleteButton />
+      </S.TableRowButtonDiv>
+    </S.TableRow>
+  );
+};
+
+const MilestoneRow = ({ id, milestoneData }: tabContentProp) => {
   return (
     <S.TableRow>
       <S.TableRowContentLeft>
         <S.TableRowContentLeftCol>
-          <ContentTitle title={rowData?.title} due_date={rowData?.due_date} />
-          <ContentDescription description={rowData?.description} />
+          <ContentTitle
+            title={milestoneData?.title}
+            due_date={milestoneData?.due_date}
+          />
+          <ContentDescription description={milestoneData?.description} />
         </S.TableRowContentLeftCol>
       </S.TableRowContentLeft>
       <S.TableRowContentRight>
@@ -81,8 +91,8 @@ const MilestoneRow = ({ id, rowData }: tabContentProp) => {
         </S.TableRowButtonDiv>
         <RangeBar />
         <RangeDescription
-          openedIssueCount={rowData?.opened_issue_count}
-          closedIssueCount={rowData?.closed_issue_count}
+          openedIssueCount={milestoneData?.opened_issue_count}
+          closedIssueCount={milestoneData?.closed_issue_count}
         />
       </S.TableRowContentRight>
     </S.TableRow>

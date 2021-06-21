@@ -1,7 +1,7 @@
 import { LabelDiv } from "./AtomicComponentsStyles";
 
 type LabelProps = {
-  label: string;
+  label?: string;
   backgroundcolor?: string;
   fontcolor?: string;
 };
