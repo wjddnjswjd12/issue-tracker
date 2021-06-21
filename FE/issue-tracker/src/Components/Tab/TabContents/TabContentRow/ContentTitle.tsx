@@ -1,15 +1,20 @@
 import { TabAssets as Icon, LabelMilestoneTable as S } from "../../TabStyles";
 
-const ContentTitle = () => {
+type contentTitleProp = {
+  title?: string;
+  due_date?: string;
+};
+
+const ContentTitle = ({ title, due_date }: contentTitleProp) => {
   return (
     <S.TitleWrapper>
       <span>
         <Icon.MilestoneTag strokecolor="#007AFF" />
-        마일스톤 제목
+        {title}
       </span>
       <S.DateSpan>
         <Icon.CalendarIcon />
-        완료일 일정
+        {due_date}
       </S.DateSpan>
     </S.TitleWrapper>
   );

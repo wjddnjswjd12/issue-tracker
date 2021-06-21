@@ -1,0 +1,15 @@
+export type milestoneType = {
+  id: number | undefined;
+  title: string | undefined;
+  description: string | undefined;
+  created_time: string | undefined;
+  due_date: string | undefined;
+  opened_issue_count: number | undefined;
+  closed_issue_count: number | undefined;
+};
+
+export type labelType = {
+  title: String | undefined;
+  description: String | undefined;
+  color: String | undefined;
+};
