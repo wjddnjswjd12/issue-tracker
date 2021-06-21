@@ -38,4 +38,11 @@ public class LabelService {
     public void modify(Long id, LabelRequest labelRequest) {
         labelRepository.save(findById(id).modify(labelRequest));
     }
+
+    public List<Label> findAllLabelByIds(List<Long> ids) {
+        if (ids.size() == 0) {
+            return null;
+        }
+        return labelRepository.findByIdIn(ids);
+    }
 }
