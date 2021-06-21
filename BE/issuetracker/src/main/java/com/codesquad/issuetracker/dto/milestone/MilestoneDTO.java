@@ -24,7 +24,7 @@ public class MilestoneDTO {
     // 이슈목록에 보여질 내용
     public static MilestoneDTO briefOf(Milestone milestone) {
         return new MilestoneDTO(milestone.getId(), milestone.getTitle(),
-                null, null, null, null, null);
+                null, null, null, milestone.getClosedIssueCount(), milestone.getOpenedIssueCount());
     }
 
     // 이슈 상세보기에 보여질 내용
