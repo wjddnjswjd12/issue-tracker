@@ -37,4 +37,10 @@ public class LabelController {
     public void modify(@PathVariable Long labelId, @RequestBody LabelRequest labelRequest) {
         labelService.modify(labelId, labelRequest);
     }
+
+    @DeleteMapping("/{labelId}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void delete(@PathVariable Long labelId) {
+        labelService.delete(labelId);
+    }
 }

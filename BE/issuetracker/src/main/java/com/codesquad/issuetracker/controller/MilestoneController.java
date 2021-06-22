@@ -37,4 +37,10 @@ public class MilestoneController {
     public void modify(@PathVariable Long milestoneId, @RequestBody MilestoneRequest milestoneRequest) {
         milestoneService.modify(milestoneId, milestoneRequest);
     }
+
+    @DeleteMapping("/{milestoneId}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void delete(@PathVariable Long milestoneId) {
+        milestoneService.delete(milestoneId);
+    }
 }

@@ -40,5 +40,7 @@ public class MilestoneService {
         milestoneRepository.save(findById(id).modify(milestoneRequest));
     }
 
-
+    public void delete(Long id) {
+        milestoneRepository.delete(findById(id));
+    }
 }

@@ -45,4 +45,8 @@ public class LabelService {
         }
         return labelRepository.findByIdIn(ids);
     }
+
+    public void delete(Long id) {
+        labelRepository.delete(findById(id));
+    }
 }
