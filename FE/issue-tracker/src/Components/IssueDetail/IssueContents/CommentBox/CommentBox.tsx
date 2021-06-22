@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useRecoilValue } from "recoil";
-import { editCommentBoxState } from "@/Components/IssueDetail/IssueDetailStore";
+import { editCommentBoxState } from "@/stores/issueDetailAtoms";
 import UserImage from "../UserImage";
 import Comment from "./Comment/Comment";
 import Editor from "@/Components/AtomicComponents/Editor/Editor";

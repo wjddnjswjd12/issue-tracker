@@ -1,9 +1,6 @@
 import { useState } from "react";
 import { useRecoilValue, useRecoilState } from "recoil";
-import {
-  issueDetailState,
-  newCommentState,
-} from "@/Components/IssueDetail/IssueDetailStore";
+import { issueDetailState, newCommentState } from "@/stores/issueDetailAtoms";
 import SettingSideBar from "@/Components/AtomicComponents/SettingSideBar/SettingSideBar";
 import CommentBox from "./CommentBox/CommentBox";
 import IssueDeleteButton from "./IssueDeleteButton";

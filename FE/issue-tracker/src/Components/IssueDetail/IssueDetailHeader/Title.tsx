@@ -2,7 +2,7 @@ import { useRecoilValue, useRecoilState } from "recoil";
 import {
   issueDetailState,
   editTitleFlagState,
-} from "@/Components/IssueDetail/IssueDetailStore";
+} from "@/stores/issueDetailAtoms";
 import TextArea from "@/Components/AtomicComponents/TextArea/TextArea";
 import { IssueDetail as S } from "@/Components/IssueDetail/IssueDetailStyles";
 

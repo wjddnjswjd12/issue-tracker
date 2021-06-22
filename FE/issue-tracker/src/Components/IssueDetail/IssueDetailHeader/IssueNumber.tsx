@@ -1,5 +1,5 @@
 import { useRecoilValue } from "recoil";
-import { issueDetailState } from "@/Components/IssueDetail/IssueDetailStore";
+import { issueDetailState } from "@/stores/issueDetailAtoms";
 import { IssueDetail as S } from "@/Components/IssueDetail/IssueDetailStyles";
 
 const IssueNumber = () => {

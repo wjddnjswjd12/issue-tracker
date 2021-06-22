@@ -1,7 +1,7 @@
 import { atom } from "recoil";
 
-export const ItemsState = atom({
-  key: "ItemsState",
+export const dropDownCategoriesState = atom({
+  key: "dropDownCategoriesState",
   default: ["담당자", "레이블", "마일스톤"],
 });
 

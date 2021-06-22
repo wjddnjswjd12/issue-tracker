@@ -14,7 +14,6 @@ const Callback = ({ history, location }: RouteComponentProps) => {
 
         // setLoginState 해야함
         // setUserInfo 해야함
-        history.push("/issue");
       } catch (e) {
         //
       }

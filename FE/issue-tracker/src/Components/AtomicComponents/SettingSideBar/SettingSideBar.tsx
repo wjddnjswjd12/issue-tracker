@@ -1,13 +1,13 @@
 import { useRecoilValue, useSetRecoilState, useRecoilState } from "recoil";
 import {
-  ItemsState,
+  dropDownCategoriesState,
   showDropDownState,
-} from "@/Components/AtomicComponents/SettingSideBar/SettingSideBarStore";
+} from "@/stores/settingSideBarAtoms";
 import SettingSideBarItem from "./SettingSideBarItem";
-import { SettingSideBar as S } from "@/Components/AtomicComponents/SettingSideBar/SettingSideBarStyles";
+import { SettingSideBar as S } from "@/Components/AtomicComponents/AtomicComponentsStyles";
 
 const SettingSideBar = () => {
-  const items = useRecoilValue(ItemsState);
+  const dropDownCategories = useRecoilValue(dropDownCategoriesState);
   const setShowAssigneeDropDown = useSetRecoilState(showDropDownState.assignee);
   const setShowLabelDropDown = useSetRecoilState(showDropDownState.label);
   const setShowMileStoneDropDown = useSetRecoilState(
@@ -28,8 +28,12 @@ const SettingSideBar = () => {
     <>
       <S.Background isShow={showBackground} onClick={handleOnClick} />
       <S.SettingSideBar>
-        {items.map((item) => (
-          <SettingSideBarItem key={item} id={item} item={item} />
+        {dropDownCategories.map((category) => (
+          <SettingSideBarItem
+            key={category}
+            id={category}
+            category={category}
+          />
         ))}
       </S.SettingSideBar>
     </>

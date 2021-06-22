@@ -1,5 +1,5 @@
 import { useSetRecoilState } from "recoil";
-import { editCommentBoxState } from "@/Components/IssueDetail/IssueDetailStore";
+import { editCommentBoxState } from "@/stores/issueDetailAtoms";
 import { IssueDetail as S } from "@/Components/IssueDetail/IssueDetailStyles";
 
 interface Props {

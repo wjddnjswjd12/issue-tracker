@@ -2,7 +2,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import {
   editTitleFlagState,
   issueDetailState,
-} from "@/Components/IssueDetail/IssueDetailStore";
+} from "@/stores/issueDetailAtoms";
 import BorderColorIcon from "@material-ui/icons/BorderColor";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import { IssueDetail as S } from "@/Components/IssueDetail/IssueDetailStyles";
