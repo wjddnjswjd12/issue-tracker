@@ -5,6 +5,7 @@ import com.codesquad.issuetracker.dto.milestone.MilestoneDTO;
 import com.codesquad.issuetracker.dto.milestone.MilestoneRequest;
 import com.codesquad.issuetracker.service.MilestoneService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,14 +27,14 @@ public class MilestoneController {
     }
 
     @PostMapping
-    public ApiResult<String> create(@RequestBody MilestoneRequest milestoneRequest) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public void create(@RequestBody MilestoneRequest milestoneRequest) {
         milestoneService.create(milestoneRequest);
-        return ApiResult.ok("Ok");
     }
 
     @PutMapping("/{milestoneId}")
-    public ApiResult<String> modify(@PathVariable Long milestoneId, @RequestBody MilestoneRequest milestoneRequest) {
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void modify(@PathVariable Long milestoneId, @RequestBody MilestoneRequest milestoneRequest) {
         milestoneService.modify(milestoneId, milestoneRequest);
-        return ApiResult.ok("Ok");
     }
 }
