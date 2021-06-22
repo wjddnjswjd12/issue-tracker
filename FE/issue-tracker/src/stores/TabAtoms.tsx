@@ -35,28 +35,13 @@ export const currentTabState = atom({
   default: "label",
 });
 
-export const addNewLabelTitleState = atom<string | undefined>({
-  key: "addNewLabelTitleState",
-  default: "",
-});
-
-export const addNewLabelDescriptionState = atom<string | undefined>({
-  key: "addNewLabelDescriptionState",
-  default: "",
-});
-
-export const addNewLabelBackgroundState = atom<string | undefined>({
-  key: "addNewLabelBackgroundState",
-  default: "",
-});
-
 export const addnewLabelFontColor = atom<string | undefined>({
   key: "addnewLabelFontColor",
   default: "black",
 });
 
-export const labelDataState = atom<labelType[]>({
-  key: "labelDataState",
+export const labelDataListState = atom<labelType[]>({
+  key: "labelDataListState",
   default: [],
 });
 

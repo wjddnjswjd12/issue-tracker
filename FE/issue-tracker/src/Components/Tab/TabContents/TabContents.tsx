@@ -5,7 +5,7 @@ import TabContentRow from "./TabContentRow/TabContentRow";
 import TabContentsHeader from "./TabContentsHeader";
 import {
   currentTabState,
-  labelDataState,
+  labelDataListState,
   milestoneDataState,
 } from "@/stores/tabAtoms";
 import useFetch from "@/Utils/useFetch";
@@ -46,7 +46,7 @@ const MilestoneContents = () => {
 
 const LabelContents = () => {
   const { fetchedData, loading } = useFetch("/label");
-  const [labelDataList, setLabelDataList] = useRecoilState(labelDataState);
+  const [labelDataList, setLabelDataList] = useRecoilState(labelDataListState);
 
   useEffect(() => {
     setLabelDataList(fetchedData as labelType[]);

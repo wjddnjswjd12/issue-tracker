@@ -2,9 +2,9 @@ import { AddNewModal as S, TabAssets as Icon } from "../../TabStyles";
 import {
   toggleEditLabelState,
   addnewLabelFontColor,
-  labelDataState,
+  labelDataListState,
   editLabelDataState,
-} from "../../../../stores/tabAtoms";
+} from "@/stores/tabAtoms";
 import { useSetRecoilState, useRecoilState } from "recoil";
 import EditLabelView from "./EditLabelView";
 import API from "@/Utils/api";
@@ -30,7 +30,7 @@ const LabelEditModal = ({ id }: LabelEditProps) => {
 
   const setLabelEditState = useSetRecoilState(toggleEditLabelState);
 
-  const [labelDataList, setLabelDataList] = useRecoilState(labelDataState);
+  const [labelDataList, setLabelDataList] = useRecoilState(labelDataListState);
 
   const handleEditCancleBtnClick = () => {
     setLabelEditState({

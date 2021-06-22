@@ -3,13 +3,13 @@ import {
   toggleEditLabelState,
   toggleEditMilestoneState,
   currentTabState,
-  labelDataState,
+  labelDataListState,
   milestoneDataState,
   addNewMilestoneTitleState,
   addNewMilestoneDescriptionState,
   addNewMilestoneDateState,
   editLabelDataState,
-} from "../../../../stores/tabAtoms";
+} from "@/stores/tabAtoms";
 import { useSetRecoilState, useRecoilValue } from "recoil";
 
 type editButtonProp = {
@@ -25,7 +25,7 @@ const EditButton = ({ id }: editButtonProp) => {
 
   const tabState = useRecoilValue(currentTabState);
 
-  const labelList = useRecoilValue(labelDataState);
+  const labelList = useRecoilValue(labelDataListState);
 
   const milestoneList = useRecoilValue(milestoneDataState);
 

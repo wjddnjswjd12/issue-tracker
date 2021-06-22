@@ -1,11 +1,11 @@
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { AddNewModal as S, TabAssets as Icon } from "../../TabStyles";
 import {
   toggleAddNewLabelState,
   addnewLabelFontColor,
-  labelDataState,
+  labelDataListState,
   addLabelDataState,
-} from "../../../../stores/tabAtoms";
+} from "@/stores/tabAtoms";
 import NewLabelView from "./NewLabelView";
 import API from "@/Utils/api";
 
@@ -16,7 +16,7 @@ type addModalPropType = {
 const LabelAddModal = () => {
   const [addLabelData, setAddLabelData] = useRecoilState(addLabelDataState);
 
-  const [labelDataList, setLabelDataList] = useRecoilState(labelDataState);
+  const [labelDataList, setLabelDataList] = useRecoilState(labelDataListState);
 
   const setAddNewLabelState = useSetRecoilState(toggleAddNewLabelState);
 

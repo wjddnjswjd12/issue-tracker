@@ -5,7 +5,7 @@ import {
   addNewMilestoneDescriptionState,
   addNewMilestoneDateState,
   milestoneDataState,
-} from "../../../../stores/tabAtoms";
+} from "@/stores/tabAtoms";
 import { useSetRecoilState, useRecoilState } from "recoil";
 import API from "@/Utils/api";
 

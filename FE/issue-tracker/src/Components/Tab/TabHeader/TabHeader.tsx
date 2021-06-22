@@ -3,9 +3,9 @@ import AddTabButton from "./AddTabButton";
 import { useSetRecoilState, useRecoilValue } from "recoil";
 import {
   currentTabState,
-  labelDataState,
+  labelDataListState,
   milestoneDataState,
-} from "../../../stores/tabAtoms";
+} from "@/stores/tabAtoms";
 
 const TabHeader = () => {
   const setTabState = useSetRecoilState(currentTabState);
@@ -14,7 +14,7 @@ const TabHeader = () => {
     setTabState(state);
   };
 
-  const labelDatas = useRecoilValue(labelDataState);
+  const labelDatas = useRecoilValue(labelDataListState);
   const milestoneDatas = useRecoilValue(milestoneDataState);
 
   return (

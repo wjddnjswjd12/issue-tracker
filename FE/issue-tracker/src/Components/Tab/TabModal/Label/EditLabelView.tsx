@@ -3,7 +3,7 @@ import Label from "@/Components/AtomicComponents/Label";
 import {
   editLabelDataState,
   addnewLabelFontColor,
-} from "../../../../stores/tabAtoms";
+} from "@/stores/tabAtoms";
 
 const EditLabelView = () => {
   const editLabelData = useRecoilValue(editLabelDataState);
