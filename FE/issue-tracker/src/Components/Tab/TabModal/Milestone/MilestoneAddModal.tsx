@@ -1,5 +1,5 @@
 import { AddNewModal as S } from "../../TabStyles";
-import { toggleEditLabelState } from "../../../../stores/TabAtoms";
+import { toggleEditLabelState } from "../../../../stores/tabAtoms";
 import { useSetRecoilState } from "recoil";
 
 const MilestoneAddModal = () => {

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useResetRecoilState } from "recoil";
 import Modal from "@/Components/AtomicComponents/Modal/Modal";
 import { FilterSearchBar as S } from "../../HomeStyles";
-import { filterModalOpenState } from "@/stores/HomeAtoms";
+import { filterModalOpenState } from "@/stores/homeAtoms";
 
 const FilterModal = () => {
   const mock = [

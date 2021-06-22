@@ -1,5 +1,5 @@
 import { useRecoilValue } from "recoil";
-import { checkedItemState } from "../../../../../stores/HomeAtoms";
+import { checkedItemState } from "../../../../../stores/homeAtoms";
 import { IssueTable as S } from "../../../HomeStyles";
 import IssueDropDownCategory from "./IssueDropDownCategory";
 import IssueToggleCategory from "./IssueToggleCategory";

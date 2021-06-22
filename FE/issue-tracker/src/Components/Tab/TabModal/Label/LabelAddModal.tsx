@@ -5,11 +5,28 @@ import {
   addNewLabelDescriptionState,
   addNewLabelBackgroundState,
   addnewLabelFontColor,
-} from "../../../../stores/TabAtoms";
+  labelDataState
+} from "../../../../stores/tabAtoms";
 import NewLabelView from "./NewLabelView";
+import API from "@/Utils/api";
 
 const LabelAddModal = () => {
   const newLabelTitleState = useRecoilValue(addNewLabelTitleState);
+  const newLabelDescriptionState = useRecoilValue(addNewLabelDescriptionState);
+  const newLabelBackgroundState = useRecoilValue(addNewLabelBackgroundState);
+  const [labelDatas,setLabelDatas]=useRecoilState(labelDataState);
+  const handleAddLabelClick = () => {
+    const newLabel={
+      title: newLabelTitleState,
+      description: newLabelDescriptionState,
+      color: newLabelBackgroundState,
+    };
+    API.post("/label", newLabel).then((res)=>{
+      if(res.ok) setLabelDatas([...labelDatas,newLabel]);
+    });
+
+    
+  };
 
   return (
     <S.AddModalDiv isLabel={true}>
@@ -25,7 +42,10 @@ const LabelAddModal = () => {
             <FontColorChangeContainer />
           </S.ChangeColorContainer>
           <S.FinishWriteBtnDiv>
-            <S.FinishWriteBtn disabled={newLabelTitleState === ""}>
+            <S.FinishWriteBtn
+              disabled={newLabelTitleState === ""}
+              onClick={handleAddLabelClick}
+            >
               + 완료
             </S.FinishWriteBtn>
           </S.FinishWriteBtnDiv>

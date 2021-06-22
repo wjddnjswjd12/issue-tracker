@@ -1,6 +1,6 @@
 import { FilterSearchBar as S, HomeAssets as SVG } from "../../HomeStyles";
 import { useRecoilState } from "recoil";
-import { filterModalOpenState } from "../../../../stores/HomeAtoms";
+import { filterModalOpenState } from "../../../../stores/homeAtoms";
 import FilterModal from "./FilterModal";
 
 const Filter = () => {

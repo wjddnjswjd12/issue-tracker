@@ -7,14 +7,14 @@ import {
   toggleEditLabelState,
   currentTabState,
   toggleEditMilestoneState,
-} from "../../../../stores/TabAtoms";
+} from "../../../../stores/tabAtoms";
 import { useRecoilValue } from "recoil";
 import LabelEditModal from "../../TabModal/Label/LabelEditModal";
 import ContentTitle from "./ContentTitle";
 import RangeBar from "./RangeBar";
 import RangeDescription from "./RangeDescription";
 import MilestoneEditModal from "../../TabModal/Milestone/MilestoneEditModal";
-import { milestoneType, labelType } from "../../TabTypes";
+import { milestoneType, labelType } from "../../tabTypes";
 
 type tabContentProp = {
   id: number;
@@ -24,6 +24,7 @@ type tabContentProp = {
 
 const TabContentRow = ({ id, milestoneData, labelData }: tabContentProp) => {
   const EditLabelState = useRecoilValue(toggleEditLabelState);
+
   const EditMilestoneState = useRecoilValue(toggleEditMilestoneState);
 
   const tabState = useRecoilValue(currentTabState);

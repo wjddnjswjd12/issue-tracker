@@ -1,11 +1,12 @@
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue,useRecoilState } from "recoil";
 import { LabelMilestoneTable as S } from "../TabStyles";
 import TabContentRow from "./TabContentRow/TabContentRow";
 import TabContentsHeader from "./TabContentsHeader";
-import { currentTabState } from "../../../stores/TabAtoms";
+import { currentTabState,labelDataState,milestoneDataState } from "@/stores/tabAtoms";
 import useFetch from "@/Utils/useFetch";
-import { milestoneType, labelType } from "../TabTypes";
+import { milestoneType, labelType } from "../tabTypes";
+import { useEffect } from 'react';
 
 const TabContents = () => {
   const tabState = useRecoilValue(currentTabState);
@@ -36,10 +37,16 @@ const MilestoneContents = () => {
 
 const LabelContents = () => {
   const { fetchedData, loading } = useFetch("/label");
+  const [labelDataList,setLabelDataList]=useRecoilState(labelDataState);
+  
+  useEffect(()=>{
+    setLabelDataList(fetchedData as labelType[]);
+  },[fetchedData])
+
   return (
     <>
-      {fetchedData &&
-        (fetchedData as labelType[]).map((label, i) => (
+      {labelDataList &&
+        (labelDataList as labelType[]).map((label, i) => (
           <TabContentRow id={i} labelData={label} key={i} />
         ))}
       {loading && <CircularProgress />}

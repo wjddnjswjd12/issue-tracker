@@ -1,7 +1,7 @@
 import { IssueTable as S } from "../../../HomeStyles";
 import IssueTableRow from "./IssueTableRow/IssueTableRow";
 import { useRecoilState } from "recoil";
-import { IssueList } from "@/stores/HomeAtoms";
+import { IssueList } from "@/stores/homeAtoms";
 import { useEffect } from "react";
 
 const IssueTableBody = () => {

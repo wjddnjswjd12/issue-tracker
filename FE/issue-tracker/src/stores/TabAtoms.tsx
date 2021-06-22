@@ -1,4 +1,5 @@
 import { atom } from "recoil";
+import { milestoneType, labelType } from "@/Components/Tab/tabTypes";
 
 export const toggleAddNewLabelState = atom({
   key: "toggleAddNewLabelState",
@@ -49,4 +50,14 @@ export const addNewLabelBackgroundState = atom({
 export const addnewLabelFontColor = atom<string | undefined>({
   key: "addnewLabelFontColor",
   default: "black",
+});
+
+export const labelDataState = atom<labelType[]>({
+  key: "labelDataState",
+  default: [],
+});
+
+export const milestoneDataState = atom<milestoneType[]>({
+  key: "milestoneDataState",
+  default: [],
 });

@@ -1,7 +1,7 @@
 import { TabComponents as S, TabAssets as Icon } from "../TabStyles";
 import AddTabButton from "./AddTabButton";
-import { useSetRecoilState } from "recoil";
-import { currentTabState } from "../../../stores/TabAtoms";
+import { useSetRecoilState,useRecoilValue } from "recoil";
+import { currentTabState,labelDataState } from "../../../stores/tabAtoms";
 
 const TabHeader = () => {
   const setTabState = useSetRecoilState(currentTabState);
@@ -10,11 +10,13 @@ const TabHeader = () => {
     setTabState(state);
   };
 
+  const labelDatas=useRecoilValue(labelDataState);
+
   return (
     <S.TabHeaderDiv>
       <S.ButtonGroup>
         <S.Button onClick={() => handleTabClick("label")}>
-          <Icon.LabelTag /> 레이블 (3)
+          <Icon.LabelTag /> 레이블 ({labelDatas?labelDatas.length:0})
         </S.Button>
         <S.Button onClick={() => handleTabClick("milestone")}>
           <Icon.MilestoneTag />

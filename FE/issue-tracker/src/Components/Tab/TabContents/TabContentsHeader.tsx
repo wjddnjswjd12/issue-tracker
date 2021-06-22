@@ -1,15 +1,17 @@
 import { useRecoilValue } from "recoil";
 import { LabelMilestoneTable as S, TabAssets as Icon } from "../TabStyles";
-import { currentTabState } from "../../../stores/TabAtoms";
+import { currentTabState,labelDataState } from "../../../stores/tabAtoms";
 
 const TabContentsHeader = () => {
   const tabState = useRecoilValue(currentTabState);
+  const labelDatas=useRecoilValue(labelDataState);
+  
 
   return (
     <S.TableHeader>
       {tabState === "label" ? (
         <S.TableHeaderLeft>
-          <S.TableTh>3개의 레이블</S.TableTh>
+          <S.TableTh>{labelDatas?labelDatas.length:0}개의 레이블</S.TableTh>
         </S.TableHeaderLeft>
       ) : (
         <S.TableHeaderLeft>

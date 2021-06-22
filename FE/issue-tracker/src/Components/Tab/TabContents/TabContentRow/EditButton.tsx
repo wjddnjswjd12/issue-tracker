@@ -3,7 +3,7 @@ import {
   toggleEditLabelState,
   toggleEditMilestoneState,
   currentTabState,
-} from "../../../../stores/TabAtoms";
+} from "../../../../stores/tabAtoms";
 import { useSetRecoilState, useRecoilValue } from "recoil";
 
 type editButtonProp = {

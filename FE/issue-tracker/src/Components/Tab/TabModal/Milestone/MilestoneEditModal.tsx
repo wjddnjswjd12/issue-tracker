@@ -1,5 +1,5 @@
 import { AddNewModal as S } from "../../TabStyles";
-import { toggleEditMilestoneState } from "../../../../stores/TabAtoms";
+import { toggleEditMilestoneState } from "../../../../stores/tabAtoms";
 import { useSetRecoilState } from "recoil";
 
 type MilesEditProps = {
