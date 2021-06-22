@@ -72,6 +72,7 @@ public class Issue {
 
     public Issue addComment(Comment comment) {
         this.comments.add(comment);
+        comment.setIssue(this);
         return this;
     }
 

@@ -67,14 +67,13 @@ public class IssueService {
 
         Issue issue = new Issue(issueRequest.getTitle(), user1, milestone, assignees, labels);
 
-        Comment comment = new Comment(issueRequest.getComment(), user1, issue);
-        issue.addComment(comment);
+        issue.addComment(new Comment(issueRequest.getComment(), user1));
         issueRepository.save(issue);
     }
 
     public void addComment(CommentRequest commentRequest, User user) {
         Issue issue = findById(commentRequest.getIssueId());
-        Comment comment = new Comment(commentRequest.getComment(), user, issue);
+        Comment comment = new Comment(commentRequest.getComment(), user);
         issueRepository.save(issue.addComment(comment));
     }
 
