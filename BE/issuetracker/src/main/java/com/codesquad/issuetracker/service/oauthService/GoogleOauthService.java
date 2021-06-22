@@ -1,4 +1,4 @@
-package com.codesquad.issuetracker.service;
+package com.codesquad.issuetracker.service.oauthService;
 
 import com.codesquad.issuetracker.dto.GoogleTokenDTO;
 import com.codesquad.issuetracker.dto.GoogleUserInfoDTO;
@@ -9,7 +9,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 @Service
-public class GoogleOauthService implements OauthService{
+public class GoogleOauthService implements OauthService {
 
     private static final String REDIRECT_URI = "http://localhost:8080/user/login/oauth/google";
     private static final String ACCESS_TOKEN_URI = "https://oauth2.googleapis.com/token";

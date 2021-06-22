@@ -35,6 +35,10 @@ public class User {
         return id;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public String getEmail() {
         return email;
     }

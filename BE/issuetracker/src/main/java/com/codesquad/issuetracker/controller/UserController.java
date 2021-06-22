@@ -4,13 +4,16 @@ import com.codesquad.issuetracker.domain.User;
 import com.codesquad.issuetracker.dto.ApiResult;
 import com.codesquad.issuetracker.dto.GithubUserInfoDTO;
 import com.codesquad.issuetracker.dto.GoogleUserInfoDTO;
-import com.codesquad.issuetracker.service.GithubOauthService;
-import com.codesquad.issuetracker.service.GoogleOauthService;
+import com.codesquad.issuetracker.dto.UserDTO;
 import com.codesquad.issuetracker.service.UserService;
+import com.codesquad.issuetracker.service.oauthService.GithubOauthService;
+import com.codesquad.issuetracker.service.oauthService.GoogleOauthService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -44,5 +47,10 @@ public class UserController {
         User user = userService.getUserFromUserInfo(userInfo, "google");
 
         return ApiResult.ok(userService.getJsonWebToken(user));
+    }
+
+    @GetMapping
+    public ApiResult<List<UserDTO>> browseAll() {
+        return ApiResult.ok(userService.findAll());
     }
 }

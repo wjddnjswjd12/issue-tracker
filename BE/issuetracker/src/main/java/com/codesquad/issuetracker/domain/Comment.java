@@ -38,6 +38,10 @@ public class Comment {
         this.issue = issue;
     }
 
+    public void setIssue(Issue issue) {
+        this.issue = issue;
+    }
+
     public Long getId() {
         return id;
     }

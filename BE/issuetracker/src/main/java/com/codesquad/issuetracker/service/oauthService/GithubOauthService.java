@@ -1,16 +1,15 @@
-package com.codesquad.issuetracker.service;
+package com.codesquad.issuetracker.service.oauthService;
 
 import com.codesquad.issuetracker.dto.GithubTokenDTO;
 import com.codesquad.issuetracker.dto.GithubUserInfoDTO;
 import com.codesquad.issuetracker.exception.InvalidAccessTokenException;
-import com.codesquad.issuetracker.repository.UserRepository;
 import org.springframework.http.RequestEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 @Service
-public class GithubOauthService implements OauthService{
+public class GithubOauthService implements OauthService {
 
     private static final String ACCESS_TOKEN_URI = "https://github.com/login/oauth/access_token";
     private static final String ACCESS_USER_INFO_URI = "https://api.github.com/user";

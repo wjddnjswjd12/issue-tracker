@@ -35,6 +35,10 @@ public class Milestone {
         this.createdTime = LocalDateTime.now();
     }
 
+    public void addIssue(Issue issue) {
+        issues.add(issue);
+    }
+
     public int getTotalIssueCount() {
         return this.issues.size();
     }

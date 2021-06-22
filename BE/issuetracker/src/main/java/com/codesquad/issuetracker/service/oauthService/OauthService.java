@@ -1,4 +1,4 @@
-package com.codesquad.issuetracker.service;
+package com.codesquad.issuetracker.service.oauthService;
 
 import com.codesquad.issuetracker.dto.UserInfo;
 import org.springframework.stereotype.Service;
