@@ -5,6 +5,7 @@ import {
   addNewLabelDescriptionState,
   addNewLabelBackgroundState,
   addnewLabelFontColor,
+  labelDataState,
 } from "../../../../stores/tabAtoms";
 import { useSetRecoilState, useRecoilState, useRecoilValue } from "recoil";
 import EditLabelView from "./EditLabelView";
@@ -16,6 +17,9 @@ type LabelEditProps = {
 
 const LabelEditModal = ({ id }: LabelEditProps) => {
   const setLabelEditState = useSetRecoilState(toggleEditLabelState);
+
+  const [labelData, setLabelData] = useRecoilState(labelDataState);
+
   const editLabelTitleState = useRecoilValue(addNewLabelTitleState);
 
   const editLabelDescriptionState = useRecoilValue(addNewLabelDescriptionState);
@@ -37,7 +41,14 @@ const LabelEditModal = ({ id }: LabelEditProps) => {
       color: editLabelBackgroundState,
     };
 
-    API.put(`/label/${id}`, editLabel);
+    API.put(`/label/${id}`, editLabel).then((res) => {
+      if (res.ok) {
+        const modifiedArray = labelData.map((label) =>
+          label.id === id ? editLabel : label
+        );
+        setLabelData(modifiedArray);
+      }
+    });
 
     setLabelEditState({
       isOpen: false,
