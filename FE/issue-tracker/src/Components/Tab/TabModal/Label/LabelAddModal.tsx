@@ -1,31 +1,37 @@
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { AddNewModal as S, TabAssets as Icon } from "../../TabStyles";
 import {
+  toggleAddNewLabelState,
   addNewLabelTitleState,
   addNewLabelDescriptionState,
   addNewLabelBackgroundState,
   addnewLabelFontColor,
-  labelDataState
+  labelDataState,
 } from "../../../../stores/tabAtoms";
 import NewLabelView from "./NewLabelView";
 import API from "@/Utils/api";
 
 const LabelAddModal = () => {
   const newLabelTitleState = useRecoilValue(addNewLabelTitleState);
+
   const newLabelDescriptionState = useRecoilValue(addNewLabelDescriptionState);
+
   const newLabelBackgroundState = useRecoilValue(addNewLabelBackgroundState);
-  const [labelDatas,setLabelDatas]=useRecoilState(labelDataState);
+
+  const [labelDatas, setLabelDatas] = useRecoilState(labelDataState);
+
+  const setAddNewLabelState = useSetRecoilState(toggleAddNewLabelState);
+
   const handleAddLabelClick = () => {
-    const newLabel={
+    const newLabel = {
       title: newLabelTitleState,
       description: newLabelDescriptionState,
       color: newLabelBackgroundState,
     };
-    API.post("/label", newLabel).then((res)=>{
-      if(res.ok) setLabelDatas([...labelDatas,newLabel]);
+    API.post("/label", newLabel).then((res) => {
+      if (res.ok) setLabelDatas([...labelDatas, newLabel]);
     });
-
-    
+    setAddNewLabelState(false);
   };
 
   return (

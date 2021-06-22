@@ -61,3 +61,18 @@ export const milestoneDataState = atom<milestoneType[]>({
   key: "milestoneDataState",
   default: [],
 });
+
+export const addNewMilestoneTitleState = atom({
+  key: "addNewMilestoneTitleState",
+  default: "",
+});
+
+export const addNewMilestoneDescriptionState = atom({
+  key: "addNewMilestoneDescriptionState",
+  default: "",
+});
+
+export const addNewMilestoneDateState = atom({
+  key: "addNewMilestoneDateState",
+  default: "",
+});
