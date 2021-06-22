@@ -2,37 +2,38 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { AddNewModal as S, TabAssets as Icon } from "../../TabStyles";
 import {
   toggleAddNewLabelState,
-  addNewLabelTitleState,
-  addNewLabelDescriptionState,
-  addNewLabelBackgroundState,
   addnewLabelFontColor,
   labelDataState,
+  addLabelDataState,
 } from "../../../../stores/tabAtoms";
 import NewLabelView from "./NewLabelView";
 import API from "@/Utils/api";
 
+type addModalPropType = {
+  onLabelInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+};
+
 const LabelAddModal = () => {
-  const newLabelTitleState = useRecoilValue(addNewLabelTitleState);
+  const [addLabelData, setAddLabelData] = useRecoilState(addLabelDataState);
 
-  const newLabelDescriptionState = useRecoilValue(addNewLabelDescriptionState);
-
-  const newLabelBackgroundState = useRecoilValue(addNewLabelBackgroundState);
-
-  const [labelDatas, setLabelDatas] = useRecoilState(labelDataState);
+  const [labelDataList, setLabelDataList] = useRecoilState(labelDataState);
 
   const setAddNewLabelState = useSetRecoilState(toggleAddNewLabelState);
 
   const handleAddLabelClick = () => {
-    const newLabel = {
-      id: labelDatas.length,
-      title: newLabelTitleState,
-      description: newLabelDescriptionState,
-      color: newLabelBackgroundState,
-    };
-    API.post("/label", newLabel).then((res) => {
-      if (res.ok) setLabelDatas([...labelDatas, newLabel]);
+    API.post("/label", addLabelData).then((res) => {
+      if (res.ok) setLabelDataList([...labelDataList, addLabelData]);
     });
     setAddNewLabelState(false);
+  };
+
+  const onLabelInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    setAddLabelData({
+      ...addLabelData,
+      [name]: value,
+    });
   };
 
   return (
@@ -43,14 +44,16 @@ const LabelAddModal = () => {
           <NewLabelView />
         </S.ModalLeft>
         <S.ModalRight>
-          <LabelTitleDescriptionInput />
+          <LabelTitleDescriptionInput onLabelInputChange={onLabelInputChange} />
           <S.ChangeColorContainer>
-            <BackgroundChangeContainer />
+            <BackgroundChangeContainer
+              onLabelInputChange={onLabelInputChange}
+            />
             <FontColorChangeContainer />
           </S.ChangeColorContainer>
           <S.FinishWriteBtnDiv>
             <S.FinishWriteBtn
-              disabled={newLabelTitleState === ""}
+              disabled={addLabelData.title === ""}
               onClick={handleAddLabelClick}
             >
               + 완료
@@ -62,38 +65,26 @@ const LabelAddModal = () => {
   );
 };
 
-const BackgroundChangeContainer = () => {
-  const [newLabelBackgroundState, setNewLabelBackgroundState] = useRecoilState(
-    addNewLabelBackgroundState
-  );
-
-  const handleLabelBackgroundInput = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setNewLabelBackgroundState(e.target.value);
-  };
-
-  const handleLabelColorInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewLabelBackgroundState((e.target as HTMLInputElement).value);
-  };
-
+const BackgroundChangeContainer = ({
+  onLabelInputChange,
+}: addModalPropType) => {
   return (
     <S.ChangeBackgroundDiv>
       <S.ColorTitle>배경색상</S.ColorTitle>
       <S.BackgroundColorContent>
         <S.Input
+          name="color"
           placeholder="색 입력"
-          value={newLabelBackgroundState}
-          onChange={handleLabelBackgroundInput}
+          onChange={onLabelInputChange}
         />
       </S.BackgroundColorContent>
       <S.ColorPickerDiv>
         <label>
           <Icon.RefreshIcon />
           <S.ColorPicker
+            name="color"
             type="color"
-            onChange={handleLabelColorInput}
-            value={newLabelBackgroundState}
+            onChange={onLabelInputChange}
           ></S.ColorPicker>
         </label>
       </S.ColorPickerDiv>
@@ -136,35 +127,20 @@ const FontColorChangeContainer = () => {
   );
 };
 
-const LabelTitleDescriptionInput = () => {
-  const [newLabelDescriptionState, setNewLabelDescriptionState] =
-    useRecoilState(addNewLabelDescriptionState);
-
-  const [newLabelTitleState, setNewLabelTitleState] = useRecoilState(
-    addNewLabelTitleState
-  );
-
-  const handleLabelTitleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewLabelTitleState(e.target.value);
-  };
-
-  const handleLabelDescriptionInput = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setNewLabelDescriptionState(e.target.value);
-  };
-
+const LabelTitleDescriptionInput = ({
+  onLabelInputChange,
+}: addModalPropType) => {
   return (
     <S.InputWrapper>
       <S.Input
+        name="title"
         placeholder="레이블 이름"
-        onChange={handleLabelTitleInput}
-        value={newLabelTitleState}
+        onChange={onLabelInputChange}
       />
       <S.Input
+        name="description"
         placeholder="설명 (선택)"
-        value={newLabelDescriptionState}
-        onChange={handleLabelDescriptionInput}
+        onChange={onLabelInputChange}
       />
     </S.InputWrapper>
   );

@@ -1,13 +1,11 @@
 import { AddNewModal as S, TabAssets as Icon } from "../../TabStyles";
 import {
   toggleEditLabelState,
-  addNewLabelTitleState,
-  addNewLabelDescriptionState,
-  addNewLabelBackgroundState,
   addnewLabelFontColor,
   labelDataState,
+  editLabelDataState,
 } from "../../../../stores/tabAtoms";
-import { useSetRecoilState, useRecoilState, useRecoilValue } from "recoil";
+import { useSetRecoilState, useRecoilState } from "recoil";
 import EditLabelView from "./EditLabelView";
 import API from "@/Utils/api";
 
@@ -15,16 +13,24 @@ type LabelEditProps = {
   id?: number;
 };
 
+type LabelEditData = {
+  id?: number;
+  title?: string;
+  description?: string;
+  color?: string;
+};
+
+type LabelEditInputPropType = {
+  onEditLabelInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  editLabelData: LabelEditData;
+};
+
 const LabelEditModal = ({ id }: LabelEditProps) => {
+  const [editLabelData, setEditLabelData] = useRecoilState(editLabelDataState);
+
   const setLabelEditState = useSetRecoilState(toggleEditLabelState);
 
-  const [labelData, setLabelData] = useRecoilState(labelDataState);
-
-  const editLabelTitleState = useRecoilValue(addNewLabelTitleState);
-
-  const editLabelDescriptionState = useRecoilValue(addNewLabelDescriptionState);
-
-  const editLabelBackgroundState = useRecoilValue(addNewLabelBackgroundState);
+  const [labelDataList, setLabelDataList] = useRecoilState(labelDataState);
 
   const handleEditCancleBtnClick = () => {
     setLabelEditState({
@@ -33,20 +39,22 @@ const LabelEditModal = ({ id }: LabelEditProps) => {
     });
   };
 
-  const handleEditCloseBtnClick = () => {
-    const editLabel = {
-      id: id,
-      title: editLabelTitleState,
-      description: editLabelDescriptionState,
-      color: editLabelBackgroundState,
-    };
+  const onEditLabelInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setEditLabelData({
+      ...editLabelData,
+      [name]: value,
+    });
+  };
 
-    API.put(`/label/${id}`, editLabel).then((res) => {
+  const handleEditCloseBtnClick = () => {
+    API.put(`/label/${id}`, editLabelData).then((res) => {
       if (res.ok) {
-        const modifiedArray = labelData.map((label) =>
-          label.id === id ? editLabel : label
+        console.log(res);
+        const modifiedArray = labelDataList.map((label) =>
+          label.id === id ? editLabelData : label
         );
-        setLabelData(modifiedArray);
+        setLabelDataList(modifiedArray);
       }
     });
 
@@ -64,9 +72,15 @@ const LabelEditModal = ({ id }: LabelEditProps) => {
           <EditLabelView />
         </S.ModalLeft>
         <S.ModalRight>
-          <LabelEditTitleDescriptionInput />
+          <LabelEditTitleDescriptionInput
+            onEditLabelInputChange={onEditLabelInputChange}
+            editLabelData={editLabelData}
+          />
           <S.ChangeColorContainer>
-            <EditBackgroundContainer />
+            <EditBackgroundContainer
+              onEditLabelInputChange={onEditLabelInputChange}
+              editLabelData={editLabelData}
+            />
             <EditFontColorContainer />
           </S.ChangeColorContainer>
           <S.FinishWriteBtnDiv>
@@ -81,69 +95,51 @@ const LabelEditModal = ({ id }: LabelEditProps) => {
   );
 };
 
-const LabelEditTitleDescriptionInput = ({ id }: LabelEditProps) => {
-  const [editTitle, setEditTitle] = useRecoilState(addNewLabelTitleState);
-  const [editDescription, setEditDescription] = useRecoilState(
-    addNewLabelDescriptionState
-  );
-
-  const handleLabelTitleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEditTitle(e.target.value);
-  };
-  const handleLabelDescriptionInput = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setEditDescription(e.target.value);
-  };
-
+const LabelEditTitleDescriptionInput = ({
+  onEditLabelInputChange,
+  editLabelData,
+}: LabelEditInputPropType) => {
   return (
     <S.InputWrapper>
       <S.Input
+        name="title"
         placeholder="레이블 이름"
-        value={editTitle}
-        onChange={handleLabelTitleInput}
+        value={editLabelData.title}
+        onChange={onEditLabelInputChange}
       />
       <S.Input
+        name="description"
         placeholder="설명 (선택)"
-        value={editDescription}
-        onChange={handleLabelDescriptionInput}
+        value={editLabelData.description}
+        onChange={onEditLabelInputChange}
       />
     </S.InputWrapper>
   );
 };
 
-const EditBackgroundContainer = () => {
-  const [editBackground, setEditBackground] = useRecoilState(
-    addNewLabelBackgroundState
-  );
-
-  const handleLabelBackgroundInput = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setEditBackground(e.target.value);
-  };
-
-  const handleLabelColorInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEditBackground((e.target as HTMLInputElement).value);
-  };
-
+const EditBackgroundContainer = ({
+  onEditLabelInputChange,
+  editLabelData,
+}: LabelEditInputPropType) => {
   return (
     <S.ChangeBackgroundDiv>
       <S.ColorTitle>배경색상</S.ColorTitle>
       <S.BackgroundColorContent>
         <S.Input
+          name="color"
           placeholder="색 입력"
-          value={editBackground}
-          onChange={handleLabelBackgroundInput}
+          value={editLabelData.color}
+          onChange={onEditLabelInputChange}
         />
       </S.BackgroundColorContent>
       <S.ColorPickerDiv>
         <label>
           <Icon.RefreshIcon />
           <S.ColorPicker
+            name="color"
             type="color"
-            onChange={handleLabelColorInput}
-            value={editBackground}
+            onChange={onEditLabelInputChange}
+            value={editLabelData.color}
           ></S.ColorPicker>
         </label>
       </S.ColorPickerDiv>

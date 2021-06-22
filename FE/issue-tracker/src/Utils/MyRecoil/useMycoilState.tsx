@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect, useCallback } from "react";
 import { globalStateRoot } from "./RecoilRoot";
 import { InitialStateType } from "./myRecoil";
-import useMycoilValue from "./useMycoilValue";
+// import useMycoilValue from "./useMycoilValue";
 
 function useMycoilState(atom: { key: string; default: InitialStateType }) {
   const store = useContext(globalStateRoot).current;

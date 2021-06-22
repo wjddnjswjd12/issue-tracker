@@ -1,14 +1,13 @@
 import { useRecoilValue } from "recoil";
 import Label from "@/Components/AtomicComponents/Label";
 import {
-  addNewLabelTitleState,
-  addNewLabelBackgroundState,
+  editLabelDataState,
   addnewLabelFontColor,
 } from "../../../../stores/tabAtoms";
 
 const EditLabelView = () => {
-  const labelTitle = useRecoilValue(addNewLabelTitleState);
-  const labelBackgroundState = useRecoilValue(addNewLabelBackgroundState);
+  const editLabelData = useRecoilValue(editLabelDataState);
+
   const labelFontColor = useRecoilValue(addnewLabelFontColor);
 
   const checkValidColor = (str: any) => {
@@ -21,9 +20,9 @@ const EditLabelView = () => {
   return (
     <Label
       backgroundcolor={
-        checkValidColor(labelBackgroundState) ? labelBackgroundState : "gray"
+        checkValidColor(editLabelData.color) ? editLabelData.color : "gray"
       }
-      label={labelTitle === "" ? "레이블제목" : labelTitle}
+      label={editLabelData.title === "" ? "레이블제목" : editLabelData.title}
       fontcolor={labelFontColor}
     />
   );

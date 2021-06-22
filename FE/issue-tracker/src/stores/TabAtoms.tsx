@@ -79,3 +79,36 @@ export const addNewMilestoneDateState = atom<string | undefined>({
   key: "addNewMilestoneDateState",
   default: "",
 });
+
+export const addLabelDataState = atom({
+  key: "addLabelDataState",
+  default: {
+    id: 0,
+    title: "",
+    description: "",
+    color: "",
+  },
+});
+
+export const editLabelDataState = atom<labelType>({
+  key: "editLabelDataState",
+  default: {
+    id: 0,
+    title: "",
+    description: "",
+    color: "",
+  },
+});
+
+export const addMilestoneDataState = atom({
+  key: "addMilestoneDataState",
+  default: {
+    id: 0,
+    title: "",
+    description: "",
+    created_time: "",
+    due_date: "",
+    opened_issue_count: 0,
+    closed_issue_count: 0,
+  },
+});
