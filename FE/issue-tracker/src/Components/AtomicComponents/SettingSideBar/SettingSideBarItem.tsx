@@ -1,18 +1,18 @@
 import PlusButton from "./PlusButton";
 import SettingDropDown from "./SettingDropDown/SettingDropDown";
 import CheckedItem from "./CheckedItem";
-import { SettingSideBar as S } from "@/Components/AtomicComponents/SettingSideBar/SettingSideBarStyles";
+import { SettingSideBar as S } from "@/Components/AtomicComponents/AtomicComponentsStyles";
 
 interface Props {
   id: string;
-  item: string;
+  category: string;
 }
 
-const SettingSideBarItem = ({ id, item }: Props) => {
+const SettingSideBarItem = ({ id, category }: Props) => {
   return (
     <S.SettingSideBarItem id={id}>
       <S.SettingSideBarTitle>
-        {item}
+        {category}
         <PlusButton id={id} />
       </S.SettingSideBarTitle>
       <CheckedItem id={id} />

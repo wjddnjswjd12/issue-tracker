@@ -1,5 +1,5 @@
 import { useSetRecoilState } from "recoil";
-import { showDropDownState } from "@/Components/AtomicComponents/SettingSideBar/SettingSideBarStore";
+import { showDropDownState } from "@/stores/settingSideBarAtoms";
 import IconButton from "@material-ui/core/IconButton";
 import AddIcon from "@material-ui/icons/Add";
 import React from "react";
@@ -17,19 +17,30 @@ const PlusButton = ({ id }: Props) => {
   const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     setBackgroundShowFlag(true);
     const clicked = (e.target as HTMLElement).closest(`#${id}`);
-    if ((clicked as HTMLElement).id === "담당자") {
-      setAssigneeShowFlag((prev) => !prev);
-      setLabelShowFlag(false);
-      setMileStoneShowFlag(false);
-    } else if ((clicked as HTMLElement).id === "레이블") {
-      setLabelShowFlag((prev) => !prev);
-      setAssigneeShowFlag(false);
-      setMileStoneShowFlag(false);
-    } else {
-      setMileStoneShowFlag((prev) => !prev);
-      setAssigneeShowFlag(false);
-      setLabelShowFlag(false);
+
+    interface ObjType {
+      [index: string]: () => void;
     }
+
+    const action: ObjType = {
+      담당자() {
+        setAssigneeShowFlag((prev) => !prev);
+        setLabelShowFlag(false);
+        setMileStoneShowFlag(false);
+      },
+      레이블() {
+        setLabelShowFlag((prev) => !prev);
+        setAssigneeShowFlag(false);
+        setMileStoneShowFlag(false);
+      },
+      마일스톤() {
+        setMileStoneShowFlag((prev) => !prev);
+        setAssigneeShowFlag(false);
+        setLabelShowFlag(false);
+      },
+    };
+
+    action[(clicked as HTMLElement).id]();
   };
 
   return (

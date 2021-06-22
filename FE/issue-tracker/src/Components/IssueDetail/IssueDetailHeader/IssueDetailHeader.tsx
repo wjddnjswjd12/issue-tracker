@@ -1,5 +1,5 @@
 import { useRecoilValue } from "recoil";
-import { issueDetailState } from "@/Components/IssueDetail/IssueDetailStore";
+import { issueDetailState } from "@/stores/issueDetailAtoms";
 import Title from "./Title";
 import IssueNumber from "./IssueNumber";
 import IssueControlButton from "./IssueControlButton";

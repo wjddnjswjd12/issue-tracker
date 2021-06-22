@@ -1,4 +1,4 @@
-import { SettingSideBar as S } from "@/Components/AtomicComponents/SettingSideBar/SettingSideBarStyles";
+import { SettingSideBar as S } from "@/Components/AtomicComponents/AtomicComponentsStyles";
 
 interface Props {
   id: string;

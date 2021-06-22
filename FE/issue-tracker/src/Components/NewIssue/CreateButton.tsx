@@ -1,9 +1,6 @@
 import { useRecoilValue } from "recoil";
 import { Link } from "react-router-dom";
-import {
-  createButtonFlagState,
-  newIssueState,
-} from "@/Components/NewIssue/NewIssueStore";
+import { createButtonFlagState, newIssueState } from "@/stores/newIssueAtoms";
 import { NewIssue as S } from "@/Components/NewIssue/NewIssueStyles";
 
 const CreateButton = () => {
@@ -27,7 +24,7 @@ const CreateButton = () => {
   return (
     <Link
       to={{
-        pathname: "/issueDetail",
+        pathname: "/issue/detail",
         state: { issueId: 1 },
       }}
       onClick={handleOnClick}

@@ -5,6 +5,7 @@ import MainPage from "@/Routes/MainPage";
 import Tab from "@/Routes/TabPage";
 import IssueDetail from "@/Routes/IssueDetail";
 import Callback from "@/Routes/Callback";
+import MyRecoilTest from "./MyRecoilTest";
 
 const Router = () => {
   return (
@@ -16,6 +17,7 @@ const Router = () => {
         <Route path="/issue/detail" component={IssueDetail} />
         <Route path="/issue/new" component={NewIssue} />
         <Route path="/callback" component={Callback} />
+        <Route path="/recoilTest" component={MyRecoilTest} />
         <Redirect from="*" to="/" />
       </Switch>
     </BrowserRouter>

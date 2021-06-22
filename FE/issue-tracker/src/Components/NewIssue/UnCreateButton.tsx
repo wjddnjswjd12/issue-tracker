@@ -4,7 +4,7 @@ import { NewIssue as S } from "@/Components/NewIssue/NewIssueStyles";
 
 const UnCreateButton = () => {
   return (
-    <Link to="/">
+    <Link to="/issue">
       <S.UnCreateButton startIcon={<CloseIcon />}>작성 취소</S.UnCreateButton>
     </Link>
   );

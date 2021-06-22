@@ -1,5 +1,5 @@
 import { useRecoilState } from "recoil";
-import { editCommentBoxState } from "@/Components/IssueDetail/IssueDetailStore";
+import { editCommentBoxState } from "@/stores/issueDetailAtoms";
 import BorderColorIcon from "@material-ui/icons/BorderColor";
 import CloseIcon from "@material-ui/icons/Close";
 import AddIcon from "@material-ui/icons/Add";

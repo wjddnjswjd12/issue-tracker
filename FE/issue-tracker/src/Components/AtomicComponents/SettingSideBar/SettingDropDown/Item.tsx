@@ -3,10 +3,10 @@ import {
   usersState,
   labelsState,
   mileStonesState,
-} from "../SettingSideBarStore";
+} from "@/stores/settingSideBarAtoms";
 import MyIcon from "./MyIcon";
 import ItemCheckBox from "./ItemCheckBox";
-import { SettingSideBar as S } from "@/Components/AtomicComponents/SettingSideBar/SettingSideBarStyles";
+import { SettingSideBar as S } from "@/Components/AtomicComponents/AtomicComponentsStyles";
 
 interface Props {
   id: string;

@@ -3,6 +3,8 @@ import { BOX } from "@/Styles/CommonStyles";
 import theme from "@/Styles/theme";
 import MDEditor from "@uiw/react-md-editor";
 
+const defaultTransition = "all 0.3s";
+
 const Editor = {
   EditorWrapper: styled(BOX.FLEX_COLUMN_BOX)`
     width: 100%;
@@ -15,7 +17,7 @@ const Editor = {
     padding: 0px 14px;
     background: ${theme.GRAY_SCALE.INPUT_BACKGROUND};
     :focus-within {
-      transition: all 0.3s;
+      transition: ${defaultTransition};
       border: 1px solid ${theme.GRAY_SCALE.LINE};
       background: ${theme.COLOR.WHITE};
     }
@@ -30,7 +32,7 @@ const Editor = {
     padding: 8px 0px;
     opacity: 0.75;
     :hover {
-      transition: all 0.3s;
+      transition: ${defaultTransition};
       opacity: 1;
     }
     span {

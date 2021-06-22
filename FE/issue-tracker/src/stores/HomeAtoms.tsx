@@ -43,13 +43,17 @@ interface IssueObj {
   id: number;
   title: string;
   number: number;
-  writer: string;
-  created_time: number;
+  author: authorType;
+  created_time: string;
   milestone: string;
   isOpen: boolean;
   asignee: object[];
   label: object[];
 }
+type authorType = {
+  name: string;
+  id: number;
+};
 
 export const IssueList = atom<IssueObj[]>({
   key: "IssueList",

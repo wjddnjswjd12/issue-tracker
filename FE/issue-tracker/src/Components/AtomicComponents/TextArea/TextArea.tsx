@@ -1,4 +1,4 @@
-import { TextArea as S } from "./TextAreaStyles";
+import { TextArea as S } from "@/Components/AtomicComponents/AtomicComponentsStyles";
 
 interface Props {
   placeholder: string;

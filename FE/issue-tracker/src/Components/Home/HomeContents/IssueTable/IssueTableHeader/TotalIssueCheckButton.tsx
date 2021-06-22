@@ -16,8 +16,6 @@ const TotalIssueCheckButton = () => {
     }
   };
 
-  console.log(checkedItemList);
-
   return (
     <input
       checked={checkedItemList.size === Issues.length}

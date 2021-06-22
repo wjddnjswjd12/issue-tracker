@@ -1,8 +1,5 @@
 import { useRecoilState, useSetRecoilState } from "recoil";
-import {
-  createButtonFlagState,
-  newIssueState,
-} from "@/Components/NewIssue/NewIssueStore";
+import { createButtonFlagState, newIssueState } from "@/stores/newIssueAtoms";
 import Title from "./Title";
 import MyIcon from "./MyIcon";
 import TextArea from "@/Components/AtomicComponents/TextArea/TextArea";
