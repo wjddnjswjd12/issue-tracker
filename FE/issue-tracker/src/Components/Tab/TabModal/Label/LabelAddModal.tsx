@@ -24,6 +24,7 @@ const LabelAddModal = () => {
 
   const handleAddLabelClick = () => {
     const newLabel = {
+      id: labelDatas.length,
       title: newLabelTitleState,
       description: newLabelDescriptionState,
       color: newLabelBackgroundState,

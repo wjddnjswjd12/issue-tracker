@@ -12,6 +12,16 @@ const API = {
       method: "POST",
       body: JSON.stringify(postData),
     }),
+
+  put: (path: string, editData: object) =>
+    fetch(`${END_POINT}${path}`, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "PUT",
+      body: JSON.stringify(editData),
+    }),
 };
 
 export default API;

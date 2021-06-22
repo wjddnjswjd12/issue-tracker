@@ -11,7 +11,7 @@ const NewLabelView = () => {
   const labelBackgroundState = useRecoilValue(addNewLabelBackgroundState);
   const labelFontColor = useRecoilValue(addnewLabelFontColor);
 
-  const checkValidColor = (str: string) => {
+  const checkValidColor = (str: any) => {
     let s = new Option().style;
     s.color = str;
     if (s.color === str || /^#[0-9A-F]{6}$/i.test(str)) return true;

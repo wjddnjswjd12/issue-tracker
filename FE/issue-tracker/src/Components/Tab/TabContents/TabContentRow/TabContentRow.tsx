@@ -17,7 +17,7 @@ import MilestoneEditModal from "../../TabModal/Milestone/MilestoneEditModal";
 import { milestoneType, labelType } from "../../tabTypes";
 
 type tabContentProp = {
-  id: number;
+  id?: number;
   milestoneData?: milestoneType;
   labelData?: labelType;
 };
@@ -34,17 +34,20 @@ const TabContentRow = ({ id, milestoneData, labelData }: tabContentProp) => {
       {tabState === "label" ? (
         <>
           {EditLabelState.isOpen && id === EditLabelState.rowId ? (
-            <LabelEditModal id={id} />
+            <LabelEditModal id={labelData?.id} />
           ) : (
-            <LabelRow id={id} labelData={labelData} />
+            <LabelRow id={labelData?.id} labelData={labelData} />
           )}
         </>
       ) : (
         <>
           {EditMilestoneState.isOpen && id === EditMilestoneState.rowId ? (
-            <MilestoneEditModal id={id} />
+            <MilestoneEditModal id={milestoneData?.id} />
           ) : (
-            <MilestoneRow id={id} milestoneData={milestoneData} />
+            <MilestoneRow
+              id={milestoneData?.id}
+              milestoneData={milestoneData}
+            />
           )}
         </>
       )}

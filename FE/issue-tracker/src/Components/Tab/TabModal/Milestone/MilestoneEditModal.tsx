@@ -3,7 +3,7 @@ import { toggleEditMilestoneState } from "../../../../stores/tabAtoms";
 import { useSetRecoilState } from "recoil";
 
 type MilesEditProps = {
-  id: number;
+  id?: number;
 };
 
 const MilestoneEditModal = ({ id }: MilesEditProps) => {

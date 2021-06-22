@@ -6,7 +6,7 @@ export const toggleAddNewLabelState = atom({
   default: false,
 });
 
-export const toggleEditLabelState = atom({
+export const toggleEditLabelState = atom<{ isOpen: boolean; rowId?: number }>({
   key: "toggleEditLabelState",
   default: {
     isOpen: false,
@@ -19,7 +19,10 @@ export const toggleAddNewMilestoneState = atom({
   default: false,
 });
 
-export const toggleEditMilestoneState = atom({
+export const toggleEditMilestoneState = atom<{
+  isOpen: boolean;
+  rowId?: number;
+}>({
   key: "toggleEditMilestoneState",
   default: {
     isOpen: false,
@@ -32,17 +35,17 @@ export const currentTabState = atom({
   default: "label",
 });
 
-export const addNewLabelTitleState = atom({
+export const addNewLabelTitleState = atom<string | undefined>({
   key: "addNewLabelTitleState",
   default: "",
 });
 
-export const addNewLabelDescriptionState = atom({
+export const addNewLabelDescriptionState = atom<string | undefined>({
   key: "addNewLabelDescriptionState",
   default: "",
 });
 
-export const addNewLabelBackgroundState = atom({
+export const addNewLabelBackgroundState = atom<string | undefined>({
   key: "addNewLabelBackgroundState",
   default: "",
 });
@@ -62,17 +65,17 @@ export const milestoneDataState = atom<milestoneType[]>({
   default: [],
 });
 
-export const addNewMilestoneTitleState = atom({
+export const addNewMilestoneTitleState = atom<string | undefined>({
   key: "addNewMilestoneTitleState",
   default: "",
 });
 
-export const addNewMilestoneDescriptionState = atom({
+export const addNewMilestoneDescriptionState = atom<string | undefined>({
   key: "addNewMilestoneDescriptionState",
   default: "",
 });
 
-export const addNewMilestoneDateState = atom({
+export const addNewMilestoneDateState = atom<string | undefined>({
   key: "addNewMilestoneDateState",
   default: "",
 });
