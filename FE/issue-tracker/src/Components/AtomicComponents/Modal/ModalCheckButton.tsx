@@ -1,5 +1,10 @@
-import { useSetRecoilState, useRecoilState } from "recoil";
-import { searchBarValue } from "@/stores/homeAtoms";
+import { useRecoilState } from "recoil";
+import { searchBarValue, pipeFunctionState } from "@/stores/homeAtoms";
+import {
+  getLabelFilteredData,
+  getMilestoneFilteredData,
+  getAuthorFilteredData,
+} from "@/Utils/filterData";
 
 type filterItemObjType = {
   [index: string]: () => void;
@@ -49,6 +54,8 @@ const ModalCheckButton = ({ data, modalType, modalTitle }: any) => {
     },
   };
 
+  const [pipeFnsState, setPipeFnsState] = useRecoilState(pipeFunctionState);
+
   const filterItemClickHandler = (
     e: React.MouseEvent<HTMLInputElement, MouseEvent>
   ) => {
@@ -62,6 +69,22 @@ const ModalCheckButton = ({ data, modalType, modalTitle }: any) => {
     const clickedItem = (e.target as HTMLInputElement).value;
     const clickedModal = (e.target as HTMLInputElement).name;
     categoryClickObj[clickedModal](clickedItem);
+
+    if (clickedModal === "레이블")
+      setPipeFnsState({
+        ...pipeFnsState,
+        label: getLabelFilteredData(clickedItem),
+      });
+    else if (clickedModal === "마일스톤")
+      setPipeFnsState({
+        ...pipeFnsState,
+        milestone: getMilestoneFilteredData(clickedItem),
+      });
+    else if (clickedModal === "작성자")
+      setPipeFnsState({
+        ...pipeFnsState,
+        author: getAuthorFilteredData(clickedItem),
+      });
   };
 
   return modalType === "filter" ? (

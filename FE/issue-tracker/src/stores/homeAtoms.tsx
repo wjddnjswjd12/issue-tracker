@@ -63,3 +63,15 @@ export const userDataListState = atom<userType[]>({
   key: "userDataList",
   default: [],
 });
+
+export const pipeFunctionState = atom<{
+  [index: string]: Function;
+}>({
+  key: "pipeFunctionState",
+  default: {},
+});
+
+export const filteredData = atom<IssueType[]>({
+  key: "filteredData",
+  default: [],
+});
