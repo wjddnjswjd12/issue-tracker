@@ -1,8 +1,16 @@
+import CircularProgress from "@material-ui/core/CircularProgress";
+import { useRecoilValue, useRecoilState } from "recoil";
 import { LabelMilestoneTable as S } from "../TabStyles";
 import TabContentRow from "./TabContentRow/TabContentRow";
 import TabContentsHeader from "./TabContentsHeader";
-import { currentTabState } from "../../../stores/TabAtoms";
-import { useRecoilValue } from "recoil";
+import {
+  currentTabState,
+  labelDataListState,
+  milestoneDataState,
+} from "@/stores/tabAtoms";
+import useFetch from "@/Utils/useFetch";
+import { milestoneType, labelType } from "../tabTypes";
+import { useEffect } from "react";
 
 const TabContents = () => {
   const tabState = useRecoilValue(currentTabState);
@@ -11,11 +19,47 @@ const TabContents = () => {
     <S.IssueTable>
       <TabContentsHeader />
       <S.TableBody>
-        {tabState === "label"
-          ? [...Array(3)].map((v, i) => <TabContentRow id={i} key={i} />)
-          : [...Array(4)].map((v, i) => <TabContentRow id={i} key={i} />)}
+        {tabState === "label" ? <LabelContents /> : <MilestoneContents />}
       </S.TableBody>
     </S.IssueTable>
+  );
+};
+
+const MilestoneContents = () => {
+  const { fetchedData, loading } = useFetch("/milestone");
+  const [milestoneList, setMilestoneList] = useRecoilState(milestoneDataState);
+
+  useEffect(() => {
+    setMilestoneList(fetchedData as milestoneType[]);
+  }, [fetchedData]);
+
+  return (
+    <>
+      {milestoneList &&
+        (milestoneList as milestoneType[]).map((milestone, i) => (
+          <TabContentRow id={i} milestoneData={milestone} key={i} />
+        ))}
+      {loading && <CircularProgress />}
+    </>
+  );
+};
+
+const LabelContents = () => {
+  const { fetchedData, loading } = useFetch("/label");
+  const [labelDataList, setLabelDataList] = useRecoilState(labelDataListState);
+
+  useEffect(() => {
+    setLabelDataList(fetchedData as labelType[]);
+  }, [fetchedData]);
+
+  return (
+    <>
+      {labelDataList &&
+        (labelDataList as labelType[]).map((label, i) => (
+          <TabContentRow id={i} labelData={label} key={i} />
+        ))}
+      {loading && <CircularProgress />}
+    </>
   );
 };
 

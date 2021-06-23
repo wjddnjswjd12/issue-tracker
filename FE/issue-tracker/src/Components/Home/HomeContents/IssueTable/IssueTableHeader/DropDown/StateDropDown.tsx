@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import Modal from "@/Components/AtomicComponents/Modal/Modal";
 import { useResetRecoilState } from "recoil";
 import { IssueTable as S } from "@/Components/Home/HomeStyles";
-import { IssueModalState } from "@/stores/HomeAtoms";
+import { IssueModalState } from "@/stores/homeAtoms";
 
 const StateDropDown = () => {
   const IssueDropDownMock = ["이슈닫기", "이슈열기"];

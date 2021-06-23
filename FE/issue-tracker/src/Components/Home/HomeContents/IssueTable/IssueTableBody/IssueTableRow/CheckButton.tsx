@@ -1,6 +1,6 @@
 import React from "react";
 import { useRecoilState } from "recoil";
-import { checkedItemState } from "@/stores/HomeAtoms";
+import { checkedItemState } from "@/stores/homeAtoms";
 
 type CheckButtonProps = {
   issueId: number;

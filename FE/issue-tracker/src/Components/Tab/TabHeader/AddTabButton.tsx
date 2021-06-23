@@ -4,7 +4,7 @@ import {
   toggleAddNewMilestoneState,
   toggleAddNewLabelState,
   currentTabState,
-} from "../../../stores/TabAtoms";
+} from "@/stores/tabAtoms";
 
 const AddTabButton = () => {
   const [toggleAddMilestoneState, setToggleAddMilestoneState] = useRecoilState(

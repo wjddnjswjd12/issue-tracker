@@ -1,5 +1,5 @@
 import { useRecoilState, useRecoilValue } from "recoil";
-import { checkedItemState, IssueList } from "@/stores/HomeAtoms";
+import { checkedItemState, IssueList } from "@/stores/homeAtoms";
 
 const TotalIssueCheckButton = () => {
   const [checkedItemList, setCheckedItemList] =

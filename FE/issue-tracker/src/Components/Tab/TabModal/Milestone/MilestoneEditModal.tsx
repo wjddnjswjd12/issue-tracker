@@ -1,35 +1,83 @@
 import { AddNewModal as S } from "../../TabStyles";
-import { toggleEditMilestoneState } from "../../../../stores/TabAtoms";
-import { useSetRecoilState } from "recoil";
+import {
+  toggleEditMilestoneState,
+  milestoneDataState,
+  editMilestoneDataState,
+} from "@/stores/tabAtoms";
+import { useSetRecoilState, useRecoilState } from "recoil";
+import API from "@/Utils/api";
 
 type MilesEditProps = {
-  id: number;
+  id?: number;
 };
 
 const MilestoneEditModal = ({ id }: MilesEditProps) => {
+  const [editMilestoneData, setEditMilestoneData] = useRecoilState(
+    editMilestoneDataState
+  );
+
   const setMilestoneEditState = useSetRecoilState(toggleEditMilestoneState);
 
+  const [milestoneData, setMilestoneData] = useRecoilState(milestoneDataState);
+
+  const onChangeMilestoneInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setEditMilestoneData({ ...editMilestoneData, [name]: value });
+  };
+
   const handleEditCloseBtnClick = () => {
+    API.put(`/milestone/${id}`, editMilestoneData).then((res) => {
+      if (res.ok) {
+        const modifiedArray = milestoneData.map((mile) =>
+          mile.id === id ? editMilestoneData : mile
+        );
+        setMilestoneData(modifiedArray);
+      }
+    });
+
     setMilestoneEditState({
       isOpen: false,
       rowId: id,
     });
   };
 
+  const handleEditCancleBtnClick = () => {
+    setMilestoneEditState({
+      isOpen: false,
+      rowId: id,
+    });
+  };
+  console.log(milestoneData);
   return (
     <S.AddModalDiv isLabel={false}>
       <S.AddModalTitle>마일스톤 편집</S.AddModalTitle>
       <S.ModalMileContent>
         <S.ModalContent>
           <S.MilestoneSmallInputDiv>
-            <S.Input placeholder="마일스톤 이름" />
+            <S.Input
+              name="tilte"
+              value={editMilestoneData.title}
+              placeholder="마일스톤 이름"
+              onChange={onChangeMilestoneInput}
+            />
           </S.MilestoneSmallInputDiv>
           <S.MilestoneSmallInputDiv>
-            <S.Input placeholder="완료일(선택) ex.YYYY-MM-DD" />
+            <S.Input
+              name="due_date"
+              value={editMilestoneData.due_date}
+              placeholder="완료일(선택) ex.YYYY-MM-DD"
+              onChange={onChangeMilestoneInput}
+            />
           </S.MilestoneSmallInputDiv>
         </S.ModalContent>
-        <S.Input placeholder="설명(선택)" />
+        <S.Input
+          name="description"
+          placeholder="설명(선택)"
+          value={editMilestoneData.description}
+          onChange={onChangeMilestoneInput}
+        />
         <S.FinishWriteBtnDiv>
+          <S.Canclebtn onClick={handleEditCancleBtnClick}>취소</S.Canclebtn>
           <S.FinishWriteBtn onClick={handleEditCloseBtnClick}>
             + 완료
           </S.FinishWriteBtn>

@@ -3,29 +3,68 @@ import {
   toggleEditLabelState,
   toggleEditMilestoneState,
   currentTabState,
-} from "../../../../stores/TabAtoms";
+  labelDataListState,
+  milestoneDataState,
+  editLabelDataState,
+  editMilestoneDataState,
+} from "@/stores/tabAtoms";
 import { useSetRecoilState, useRecoilValue } from "recoil";
 
 type editButtonProp = {
-  id: number;
+  id?: number;
 };
 
 const EditButton = ({ id }: editButtonProp) => {
+  const setLabelEditData = useSetRecoilState(editLabelDataState);
+  const setMilestoneEditData = useSetRecoilState(editMilestoneDataState);
+
   const setLabelEditState = useSetRecoilState(toggleEditLabelState);
+
   const setMilestoneEditState = useSetRecoilState(toggleEditMilestoneState);
+
   const tabState = useRecoilValue(currentTabState);
 
+  const labelList = useRecoilValue(labelDataListState);
+
+  const milestoneList = useRecoilValue(milestoneDataState);
+
+  // const setLabelFontColor = useSetRecoilState(addnewLabelFontColor);
+
   const handleEditClick = () => {
-    if (tabState === "label")
+    if (tabState === "label") {
+      const editData = labelList.find((label) => label.id === id);
+
       setLabelEditState({
         isOpen: true,
         rowId: id,
       });
-    else
+
+      setLabelEditData({
+        id: id,
+        title: editData?.title,
+        description: editData?.description,
+        color: editData?.color,
+      });
+
+      // setLabelFontColor(editData?.description);
+    } else {
+      const editData = milestoneList.find((milestone) => milestone.id === id);
+      console.log(editData);
       setMilestoneEditState({
         isOpen: true,
         rowId: id,
       });
+
+      setMilestoneEditData({
+        id: id,
+        title: editData?.title,
+        description: editData?.description,
+        created_time: new Date().toUTCString(),
+        due_date: editData?.due_date,
+        opened_issue_count: 0,
+        closed_issue_count: 0,
+      });
+    }
   };
 
   return (

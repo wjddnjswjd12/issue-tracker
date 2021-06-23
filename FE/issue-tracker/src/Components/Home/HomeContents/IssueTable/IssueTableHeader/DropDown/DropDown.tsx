@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useSetRecoilState, useResetRecoilState } from "recoil";
 import Modal from "@/Components/AtomicComponents/Modal/Modal";
 import { IssueTable as S } from "@/Components/Home/HomeStyles";
-import { categoryModalOpenState } from "@/stores/HomeAtoms";
+import { categoryModalOpenState } from "@/stores/homeAtoms";
 
 type dropDownProps = {
   modalTitle: string;
