@@ -3,21 +3,25 @@ import IssueTableRow from "./IssueTableRow/IssueTableRow";
 import { useRecoilState } from "recoil";
 import { IssueList } from "@/stores/homeAtoms";
 import { useEffect } from "react";
+import useFetch from "@/Utils/useFetch";
+import { IssueType } from "@/Components/Home/homeTypes";
 
 const IssueTableBody = () => {
   const [issueList, setIssueList] = useRecoilState(IssueList);
 
+  const { fetchedData, loading } = useFetch("/issue");
+
   useEffect(() => {
-    fetch("/issue")
-      .then((res) => res.json())
-      .then((response) => setIssueList(response.data));
-  }, []);
+    setIssueList(fetchedData as IssueType[]);
+  }, [fetchedData]);
 
   return (
     <S.TableBody>
-      {issueList?.map((issue, i) => (
-        <IssueTableRow issue={issue} key={issue.id} />
-      ))}
+      {issueList &&
+        issueList?.map((issue, i) => (
+          <IssueTableRow issue={issue} key={issue.id} />
+        ))}
+      {loading && <div>loading..</div>}
     </S.TableBody>
   );
 };

@@ -1,8 +1,17 @@
 import Label from "@/Components/AtomicComponents/Label";
+import { issueLabelType } from "@/Components/Home/homeTypes";
 
-const IssueLabel = () => {
+const IssueLabel = ({ labels }: { labels: issueLabelType[] }) => {
   return (
-    <Label label="레이블 이름" backgroundcolor="orange" fontcolor="white" />
+    <>
+      {labels.map((label) => (
+        <Label
+          label={label.title}
+          backgroundcolor={label.color}
+          fontcolor="white"
+        />
+      ))}
+    </>
   );
 };
 

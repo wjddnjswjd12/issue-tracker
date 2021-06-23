@@ -1,5 +1,5 @@
 import { atom, selector } from "recoil";
-import { userType } from "@/Components/Home/homeTypes";
+import { IssueType, userType } from "@/Components/Home/homeTypes";
 
 export const checkedItemState = atom({
   key: "checkedItemState",
@@ -41,23 +41,7 @@ export const editOpenCloseIssueModalState = atom({
   default: false,
 });
 
-interface IssueObj {
-  id: number;
-  title: string;
-  number: number;
-  author: authorType;
-  created_time: string;
-  milestone: string;
-  isOpen: boolean;
-  asignee: object[];
-  label: object[];
-}
-type authorType = {
-  name: string;
-  id: number;
-};
-
-export const IssueList = atom<IssueObj[]>({
+export const IssueList = atom<IssueType[]>({
   key: "IssueList",
   default: [],
 });
@@ -65,7 +49,7 @@ export const IssueList = atom<IssueObj[]>({
 export const searchBarValue = atom<any>({
   key: "searchBarValue",
   default: {
-    isIssue: "isIssue",
+    isIssue: "is: issue",
     isOpen: "",
     myFilter: "",
     author: "",

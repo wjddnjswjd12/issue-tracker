@@ -17,11 +17,13 @@ const TotalIssueCheckButton = () => {
   };
 
   return (
-    <input
-      checked={checkedItemList.size === Issues.length}
-      type="checkbox"
-      onChange={handletotalCheck}
-    />
+    Issues && (
+      <input
+        checked={checkedItemList.size === Issues.length}
+        type="checkbox"
+        onChange={handletotalCheck}
+      />
+    )
   );
 };
 
