@@ -1,4 +1,4 @@
-const END_POINT = "http://3.37.161.3:8080";
+const END_POINT = "http://3.37.161.3";
 
 const API = {
   get: (urlPath: string) => fetch(`${END_POINT}${urlPath}`),

@@ -5,10 +5,8 @@ import {
   currentTabState,
   labelDataListState,
   milestoneDataState,
-  addNewMilestoneTitleState,
-  addNewMilestoneDescriptionState,
-  addNewMilestoneDateState,
   editLabelDataState,
+  editMilestoneDataState,
 } from "@/stores/tabAtoms";
 import { useSetRecoilState, useRecoilValue } from "recoil";
 
@@ -18,6 +16,7 @@ type editButtonProp = {
 
 const EditButton = ({ id }: editButtonProp) => {
   const setLabelEditData = useSetRecoilState(editLabelDataState);
+  const setMilestoneEditData = useSetRecoilState(editMilestoneDataState);
 
   const setLabelEditState = useSetRecoilState(toggleEditLabelState);
 
@@ -30,13 +29,6 @@ const EditButton = ({ id }: editButtonProp) => {
   const milestoneList = useRecoilValue(milestoneDataState);
 
   // const setLabelFontColor = useSetRecoilState(addnewLabelFontColor);
-
-  const setMilestoneTitle = useSetRecoilState(addNewMilestoneTitleState);
-
-  const setMilestoneDescription = useSetRecoilState(
-    addNewMilestoneDescriptionState
-  );
-  const setMilestoneDate = useSetRecoilState(addNewMilestoneDateState);
 
   const handleEditClick = () => {
     if (tabState === "label") {
@@ -57,15 +49,21 @@ const EditButton = ({ id }: editButtonProp) => {
       // setLabelFontColor(editData?.description);
     } else {
       const editData = milestoneList.find((milestone) => milestone.id === id);
-
+      console.log(editData);
       setMilestoneEditState({
         isOpen: true,
         rowId: id,
       });
 
-      setMilestoneTitle(editData?.title);
-      setMilestoneDescription(editData?.description);
-      setMilestoneDate(editData?.due_date);
+      setMilestoneEditData({
+        id: id,
+        title: editData?.title,
+        description: editData?.description,
+        created_time: new Date().toUTCString(),
+        due_date: editData?.due_date,
+        opened_issue_count: 0,
+        closed_issue_count: 0,
+      });
     }
   };
 

@@ -33,7 +33,7 @@ const TabContentRow = ({ id, milestoneData, labelData }: tabContentProp) => {
     <>
       {tabState === "label" ? (
         <>
-          {EditLabelState.isOpen && id === EditLabelState.rowId ? (
+          {EditLabelState.isOpen && labelData?.id === EditLabelState.rowId ? (
             <LabelEditModal id={labelData?.id} />
           ) : (
             <LabelRow id={labelData?.id} labelData={labelData} />
@@ -41,7 +41,8 @@ const TabContentRow = ({ id, milestoneData, labelData }: tabContentProp) => {
         </>
       ) : (
         <>
-          {EditMilestoneState.isOpen && id === EditMilestoneState.rowId ? (
+          {EditMilestoneState.isOpen &&
+          milestoneData?.id === EditMilestoneState.rowId ? (
             <MilestoneEditModal id={milestoneData?.id} />
           ) : (
             <MilestoneRow
