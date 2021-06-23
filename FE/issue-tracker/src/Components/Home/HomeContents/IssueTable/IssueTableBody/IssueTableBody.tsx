@@ -12,7 +12,6 @@ const IssueTableBody = () => {
       .then((res) => res.json())
       .then((response) => setIssueList(response.data));
   }, []);
-  console.log(issueList);
 
   return (
     <S.TableBody>

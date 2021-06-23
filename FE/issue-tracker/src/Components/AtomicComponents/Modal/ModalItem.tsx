@@ -6,20 +6,31 @@ type ModalItemProps = {
   data: any;
   index?: number;
   modalType?: string;
+  modalTitle: string;
 };
 
-const ModalItem = ({ data, index, modalType }: ModalItemProps) => {
+const ModalItem = ({ data, index, modalType, modalTitle }: ModalItemProps) => {
   return (
     <S.ModalItemDiv>
       {modalType === "filter" ? (
         <>
           <span>{data.content}</span>
-          <ModalCheckButton index={index} data={data} modalType={modalType} />
+          <ModalCheckButton
+            modalTitle={modalTitle}
+            index={index}
+            data={data}
+            modalType={modalType}
+          />
         </>
       ) : (
         <>
           <span>{data}</span>
-          <ModalCheckButton index={index} data={data} modalType={modalType} />
+          <ModalCheckButton
+            modalTitle={modalTitle}
+            index={index}
+            data={data}
+            modalType={modalType}
+          />
         </>
       )}
     </S.ModalItemDiv>

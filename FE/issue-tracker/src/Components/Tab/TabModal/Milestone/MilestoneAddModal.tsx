@@ -1,7 +1,7 @@
 import { AddNewModal as S } from "../../TabStyles";
 import {
   toggleAddNewMilestoneState,
-  milestoneDataState,
+  milestoneDataListState,
   addMilestoneDataState,
 } from "@/stores/tabAtoms";
 import { useSetRecoilState, useRecoilState } from "recoil";
@@ -13,7 +13,9 @@ const MilestoneAddModal = () => {
   );
 
   const setMilestoneAddState = useSetRecoilState(toggleAddNewMilestoneState);
-  const [milestoneData, setMilestoneData] = useRecoilState(milestoneDataState);
+  const [milestoneData, setMilestoneData] = useRecoilState(
+    milestoneDataListState
+  );
 
   const handleEditCloseBtnClick = () => {
     API.post("/milestone", addMilestoneData).then((res) => {

@@ -3,13 +3,13 @@ import { LabelMilestoneTable as S, TabAssets as Icon } from "../TabStyles";
 import {
   currentTabState,
   labelDataListState,
-  milestoneDataState,
+  milestoneDataListState,
 } from "@/stores/tabAtoms";
 
 const TabContentsHeader = () => {
   const tabState = useRecoilValue(currentTabState);
   const labelDatas = useRecoilValue(labelDataListState);
-  const milestoneDatas = useRecoilValue(milestoneDataState);
+  const milestoneDatas = useRecoilValue(milestoneDataListState);
 
   return (
     <S.TableHeader>

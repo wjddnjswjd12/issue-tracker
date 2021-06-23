@@ -1,4 +1,5 @@
 import { atom, selector } from "recoil";
+import { userType } from "@/Components/Home/homeTypes";
 
 export const checkedItemState = atom({
   key: "checkedItemState",
@@ -34,6 +35,7 @@ export const categoryModalOpenState = atom<{
   },
 });
 
+//상태 수정을 띄울지 담당자,레이블,마일스톤,작성자를 띄울지
 export const editOpenCloseIssueModalState = atom({
   key: "editOpenCloseIssueModalState",
   default: false,
@@ -60,7 +62,20 @@ export const IssueList = atom<IssueObj[]>({
   default: [],
 });
 
-export const searchBarValue = atom<any[]>({
+export const searchBarValue = atom<any>({
   key: "searchBarValue",
-  default: ["is:issue", "", ""],
+  default: {
+    isIssue: "isIssue",
+    isOpen: "",
+    myFilter: "",
+    author: "",
+    asignee: "",
+    label: "",
+    milestone: "",
+  },
+});
+
+export const userDataListState = atom<userType[]>({
+  key: "userDataList",
+  default: [],
 });

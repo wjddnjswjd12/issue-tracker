@@ -4,7 +4,7 @@ import { useSetRecoilState, useRecoilValue } from "recoil";
 import {
   currentTabState,
   labelDataListState,
-  milestoneDataState,
+  milestoneDataListState,
 } from "@/stores/tabAtoms";
 
 const TabHeader = () => {
@@ -15,7 +15,7 @@ const TabHeader = () => {
   };
 
   const labelDatas = useRecoilValue(labelDataListState);
-  const milestoneDatas = useRecoilValue(milestoneDataState);
+  const milestoneDatas = useRecoilValue(milestoneDataListState);
 
   return (
     <S.TabHeaderDiv>
