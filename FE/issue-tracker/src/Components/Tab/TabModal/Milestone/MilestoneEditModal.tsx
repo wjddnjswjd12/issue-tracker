@@ -1,7 +1,7 @@
 import { AddNewModal as S } from "../../TabStyles";
 import {
   toggleEditMilestoneState,
-  milestoneDataState,
+  milestoneDataListState,
   editMilestoneDataState,
 } from "@/stores/tabAtoms";
 import { useSetRecoilState, useRecoilState } from "recoil";
@@ -18,7 +18,9 @@ const MilestoneEditModal = ({ id }: MilesEditProps) => {
 
   const setMilestoneEditState = useSetRecoilState(toggleEditMilestoneState);
 
-  const [milestoneData, setMilestoneData] = useRecoilState(milestoneDataState);
+  const [milestoneData, setMilestoneData] = useRecoilState(
+    milestoneDataListState
+  );
 
   const onChangeMilestoneInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

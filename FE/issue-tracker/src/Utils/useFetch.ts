@@ -14,10 +14,8 @@ const useFetch = <T>(path: string) => {
     API.get(path)
       .then((res) => res.json())
       .then((response) => {
-        setTimeout(() => {
-          setLoading(false);
-          setData(response.data);
-        }, 1000);
+        setLoading(false);
+        setData(response.data);
       })
       .catch((error) => {
         setLoading(false);

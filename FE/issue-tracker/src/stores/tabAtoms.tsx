@@ -45,8 +45,8 @@ export const labelDataListState = atom<labelType[]>({
   default: [],
 });
 
-export const milestoneDataState = atom<milestoneType[]>({
-  key: "milestoneDataState",
+export const milestoneDataListState = atom<milestoneType[]>({
+  key: "milestoneDataListState",
   default: [],
 });
 

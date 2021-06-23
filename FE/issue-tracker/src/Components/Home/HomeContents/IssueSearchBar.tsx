@@ -15,7 +15,10 @@ const IssueSearchBar = () => {
       <Filter />
       <SB.SearchDiv>
         <Icon.SearchIcon />
-        <SB.SearchInput placeholder="is:issue" value={searchString.join(" ")} />
+        <SB.SearchInput
+          placeholder="is:issue"
+          value={Object.values(searchString).join(" ")}
+        />
       </SB.SearchDiv>
     </S.ContentNavLeft>
   );

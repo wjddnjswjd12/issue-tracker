@@ -4,26 +4,10 @@ import IssueDescription from "./IssueDescription";
 import IssueDropDownSymbol from "./IssueDropDownSymbol";
 import IssueTitle from "./IssueTitle";
 import IssueLabel from "./IssueLabel";
+import { IssueType } from "@/Components/Home/homeTypes";
 
 type IssueTableRowProps = {
-  issue: IssueObj;
-};
-
-interface IssueObj {
-  id: number;
-  title: string;
-  number: number;
-  author: authorType;
-  created_time: string;
-  milestone: string;
-  isOpen: boolean;
-  asignee: object[];
-  label: object[];
-}
-
-type authorType = {
-  name: string;
-  id: number;
+  issue: IssueType;
 };
 
 const IssueTableRow = ({ issue }: IssueTableRowProps) => {
@@ -34,16 +18,17 @@ const IssueTableRow = ({ issue }: IssueTableRowProps) => {
         <S.IssueInfoDiv>
           <S.IssueInfoTop>
             <IssueTitle issueTitle={issue.title} />
-            <IssueLabel />
+            <IssueLabel labels={issue.labels} />
           </S.IssueInfoTop>
           <IssueDescription
             issueNumber={issue.number}
             author={issue.author}
             createdTime={issue.created_time}
+            milestone={issue.milestone}
           />
         </S.IssueInfoDiv>
       </S.TableRowLeft>
-      <IssueDropDownSymbol />
+      <IssueDropDownSymbol author={issue.author} />
     </S.TableRow>
   );
 };
