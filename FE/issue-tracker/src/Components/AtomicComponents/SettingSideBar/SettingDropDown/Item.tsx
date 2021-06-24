@@ -23,7 +23,12 @@ const Item = ({ id }: Props) => {
             <MyIcon id={id} imgUrl={user.image_url} />
             <S.ItemText>{user.name}</S.ItemText>
           </S.LeftItems>
-          <ItemCheckBox />
+          <ItemCheckBox
+            imgUrl={user.image_url}
+            id={user.id}
+            header={id}
+            content={user.name}
+          />
         </S.Item>
       ));
     } else if (id === "레이블") {
@@ -31,9 +36,14 @@ const Item = ({ id }: Props) => {
         <S.Item>
           <S.LeftItems>
             <MyIcon id={id} labelColor={label.color} title={label.title} />
-            <S.ItemText>{label.description}</S.ItemText>
+            <S.ItemText>{label.title}</S.ItemText>
           </S.LeftItems>
-          <ItemCheckBox />
+          <ItemCheckBox
+            header={id}
+            color={label.color}
+            id={label.id}
+            content={label.title}
+          />
         </S.Item>
       ));
     } else {
@@ -47,7 +57,11 @@ const Item = ({ id }: Props) => {
                 : "지정된 마감일 없음"}
             </S.DueDate>
           </S.LeftItems>
-          <ItemCheckBox />
+          <ItemCheckBox
+            header={id}
+            id={mileStone.id}
+            content={mileStone.title}
+          />
         </S.Item>
       ));
     }

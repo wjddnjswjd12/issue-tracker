@@ -1,6 +1,17 @@
 const END_POINT = "http://3.37.161.3";
 
 const API = {
+  withAuth: (path: string, postData: object, token: string) =>
+    fetch(`${END_POINT}${path}`, {
+      headers: {
+        Authorization: token,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify(postData),
+    }),
+
   get: (urlPath: string) => fetch(`${END_POINT}${urlPath}`),
 
   post: (path: string, postData: object) =>

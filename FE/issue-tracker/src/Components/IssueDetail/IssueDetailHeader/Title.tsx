@@ -15,7 +15,12 @@ const Title = ({ title }: { title: string }) => {
   };
 
   return editTitleFlag ? (
-    <TextArea placeholder={title} rows={1} handleOnChange={handleOnChange} />
+    <TextArea
+      value={issueTitle.title}
+      placeholder={title}
+      rows={1}
+      handleOnChange={handleOnChange}
+    />
   ) : (
     <S.Title>{title}</S.Title>
   );

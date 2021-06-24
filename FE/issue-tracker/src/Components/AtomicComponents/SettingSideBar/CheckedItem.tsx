@@ -1,6 +1,10 @@
 import { useRecoilValue } from "recoil";
 import { SettingSideBar as S } from "@/Components/AtomicComponents/AtomicComponentsStyles";
 import { issueDetailState } from "@/stores/issueDetailAtoms";
+import { newIssueState } from "@/stores/newIssueAtoms";
+import { userDataListState } from "@/stores/homeAtoms";
+import { labelDataListState, milestoneDataListState } from "@/stores/tabAtoms";
+import Label from "../Label";
 
 interface Props {
   id: string;
@@ -9,11 +13,20 @@ interface Props {
 
 const CheckedItem = ({ id, type }: Props) => {
   const issueDetailData = useRecoilValue(issueDetailState);
+  const newIssueDataState = useRecoilValue(newIssueState);
+  const labelDatas = useRecoilValue(labelDataListState);
+  const milestoneDatas = useRecoilValue(milestoneDataListState);
+  const userDatas = useRecoilValue(userDataListState);
 
+  const addedMile = milestoneDatas.find(
+    (mile) => mile.id === newIssueDataState.milestone_id
+  );
+
+  console.log("레이블", labelDatas);
   const makeCheckedItem = () => {
     let item;
 
-    console.log(issueDetailData);
+    console.log("he", issueDetailData);
 
     if (id === "담당자") {
       item = (
@@ -29,10 +42,19 @@ const CheckedItem = ({ id, type }: Props) => {
                 ))}
             </>
           ) : (
-            <S.CheckedUser>
-              <S.CheckedUserImage />
-              유저
-            </S.CheckedUser>
+            <>
+              {newIssueDataState.assignee_id.map((assigneeId) => {
+                const addedAssignee = userDatas.find(
+                  (user) => user.id === assigneeId
+                );
+                return (
+                  <S.CheckedUser>
+                    <S.CheckedUserImage src={addedAssignee?.image_url} />
+                    {addedAssignee?.name}
+                  </S.CheckedUser>
+                );
+              })}
+            </>
           )}
         </S.CheckedItem>
       );
@@ -43,14 +65,22 @@ const CheckedItem = ({ id, type }: Props) => {
             <S.CheckedLabelWrapper>
               {issueDetailData &&
                 issueDetailData.labels?.map((label) => (
-                  <S.CheckedLabel labelColor={"pink"}>
-                    {label.title}
-                  </S.CheckedLabel>
+                  <Label label={label.title} backgroundcolor={label.color} />
                 ))}
             </S.CheckedLabelWrapper>
           ) : (
             <S.CheckedLabelWrapper>
-              <S.CheckedLabel labelColor={"pink"}>swing</S.CheckedLabel>
+              {newIssueDataState.label_ids.map((labelId) => {
+                const addedLabel = labelDatas?.find(
+                  (label) => label.id === labelId
+                );
+                return (
+                  <Label
+                    label={addedLabel?.title}
+                    backgroundcolor={addedLabel?.color}
+                  />
+                );
+              })}
             </S.CheckedLabelWrapper>
           )}
         </S.CheckedItem>
@@ -58,8 +88,14 @@ const CheckedItem = ({ id, type }: Props) => {
     } else {
       item = (
         <S.CheckedItem>
-          <input type="range" step={1} max={5} value={4} />
-          <S.CheckedUser>마일스톤</S.CheckedUser>
+          {newIssueDataState.milestone_id !== 0 ? (
+            <>
+              <input type="range" step={1} max={5} value={4} />
+              <S.CheckedUser>{addedMile?.title}</S.CheckedUser>
+            </>
+          ) : (
+            <></>
+          )}
         </S.CheckedItem>
       );
     }

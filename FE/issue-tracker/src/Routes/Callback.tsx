@@ -1,7 +1,10 @@
 import { useEffect } from "react";
+import { useSetRecoilState } from "recoil";
 import { withRouter, RouteComponentProps } from "react-router-dom";
+import { userLoggedIn } from "@/stores/loginAtoms";
 
 const Callback = ({ history, location }: RouteComponentProps) => {
+  const setLoginData = useSetRecoilState(userLoggedIn);
   useEffect(() => {
     const getToken = async () => {
       let params = new URLSearchParams(location.search);
@@ -12,10 +15,12 @@ const Callback = ({ history, location }: RouteComponentProps) => {
           `http://3.37.161.3/user/login/oauth/github?code=${code}`
         ).then((res) => res.json());
 
-        console.log(jwt_token.data);
+        setLoginData({
+          userName: "Jenny",
+          userProfileImg: "",
+          userToken: jwt_token.data,
+        });
 
-        // setLoginState 해야함
-        // setUserInfo 해야함
         history.push("/issue");
       } catch (e) {
         //

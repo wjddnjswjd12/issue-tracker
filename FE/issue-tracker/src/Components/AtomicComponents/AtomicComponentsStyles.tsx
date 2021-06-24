@@ -18,7 +18,7 @@ type LabelDivProp = {
 };
 
 const LabelDiv = styled(Chip)<LabelDivProp>`
-  color: ${({ fontcolor }) => (fontcolor ? fontcolor : "black")};
+  color: ${({ fontcolor }) => (fontcolor ? fontcolor : "white")};
   background-color: ${({ backgroundcolor }) =>
     backgroundcolor ? backgroundcolor : "gray"};
 `;
@@ -118,13 +118,15 @@ const SettingSideBar = {
     margin-right: 16px;
   `,
   CheckedLabelWrapper: styled(BOX.FLEX_ROW_CENTER_BOX)``,
+
   CheckedLabel: styled.div<{ labelColor: any }>`
     color: #fff;
     margin-right: 8px;
     padding: 6px 20px;
     border-radius: 30px;
-    background: ${(props) => props.labelColor};
+    background: ${({ labelColor }) => labelColor};
   `,
+
   SettingDropDown: styled.div<{ isShow: boolean }>`
     position: absolute;
     top: 60%;

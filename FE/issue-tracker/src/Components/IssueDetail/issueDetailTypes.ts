@@ -7,14 +7,15 @@ export type IssueDetailType = {
   milestone?: issueMilestoneType;
   labels?: issueLabelType[];
   open: boolean;
-  assignee?: authorType[];
+  assignee?: assigneeType[];
   comments?: commentType[];
 };
 
 export type commentType = {
   author: authorType;
   created_time: string;
-  comment: string;
+  content: string;
+  is_mine: boolean;
   id: number;
 };
 
@@ -22,6 +23,12 @@ export type issueLabelType = {
   id: number;
   title: string;
   color: string;
+};
+
+export type assigneeType = {
+  name: string;
+  id: number;
+  image_url: string;
 };
 
 export type issueMilestoneType = {

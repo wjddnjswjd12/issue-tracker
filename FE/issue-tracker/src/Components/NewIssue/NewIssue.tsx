@@ -39,13 +39,14 @@ const NewIssue = () => {
           <S.BodyContentsWrapper>
             <S.TextAreaWrapper>
               <TextArea
+                value={newIssue.title}
                 placeholder={"제목"}
                 rows={1}
                 handleOnChange={handleTextAreaOnChange}
               />
             </S.TextAreaWrapper>
             <Editor
-              value={"### 코멘트를 입력하세요"}
+              value={newIssue.comment}
               height={400}
               visiableDragbar={false}
               hideToolbar={true}

@@ -1,14 +1,14 @@
 import { atom } from "recoil";
 
 export const userLoggedIn = atom<{
-  userName: string | null;
-  userToken: string | null;
-  userProfileImg: string | null;
+  userName: string;
+  userToken: string;
+  userProfileImg: string;
 }>({
   key: "userLoggedIn",
   default: {
-    userName: null,
-    userToken: null,
-    userProfileImg: null,
+    userName: "Jenny",
+    userToken: "",
+    userProfileImg: "https://avatars.githubusercontent.com/u/71004200?v=4",
   },
 });
