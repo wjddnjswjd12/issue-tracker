@@ -6,7 +6,7 @@ import TabContentsHeader from "./TabContentsHeader";
 import {
   currentTabState,
   labelDataListState,
-  milestoneDataState,
+  milestoneDataListState,
 } from "@/stores/tabAtoms";
 import { milestoneType, labelType } from "../tabTypes";
 
@@ -32,7 +32,7 @@ const TabContents = ({ loading }: tabContentsPropType) => {
 };
 
 const MilestoneContents = ({ loading }: tabContentsPropType) => {
-  const milestoneList = useRecoilValue(milestoneDataState);
+  const milestoneList = useRecoilValue(milestoneDataListState);
 
   return (
     <>

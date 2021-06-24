@@ -2,34 +2,32 @@ import {
   IssueTable as S,
   HomeAssets as Icon,
 } from "@/Components/Home/HomeStyles";
+import { issueMilestoneType, authorType } from "@/Components/Home/homeTypes";
 
 type IssueDescriptionProps = {
   issueNumber: number;
   author: authorType;
   createdTime: string;
-};
-
-type authorType = {
-  name: string;
-  id: number;
+  milestone: issueMilestoneType;
 };
 
 const IssueDescription = ({
   issueNumber,
   author,
   createdTime,
+  milestone,
 }: IssueDescriptionProps) => {
   console.log(author);
   return (
     <S.IssueInfoBottom>
       <span>{issueNumber}</span>
       <span>
-        {author.name}
+        {`${author.name} `}
         {createdTime}
       </span>
       <span>
         <Icon.MilestoneTag />
-        마일스톤
+        {milestone ? milestone.title : "지정된 마일스톤 없음"}
       </span>
     </S.IssueInfoBottom>
   );

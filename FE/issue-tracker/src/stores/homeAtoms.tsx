@@ -1,4 +1,5 @@
 import { atom, selector } from "recoil";
+import { IssueType, userType } from "@/Components/Home/homeTypes";
 
 export const checkedItemState = atom({
   key: "checkedItemState",
@@ -34,33 +35,43 @@ export const categoryModalOpenState = atom<{
   },
 });
 
+//상태 수정을 띄울지 담당자,레이블,마일스톤,작성자를 띄울지
 export const editOpenCloseIssueModalState = atom({
   key: "editOpenCloseIssueModalState",
   default: false,
 });
 
-interface IssueObj {
-  id: number;
-  title: string;
-  number: number;
-  author: authorType;
-  created_time: string;
-  milestone: string;
-  isOpen: boolean;
-  asignee: object[];
-  label: object[];
-}
-type authorType = {
-  name: string;
-  id: number;
-};
-
-export const IssueList = atom<IssueObj[]>({
+export const IssueList = atom<IssueType[]>({
   key: "IssueList",
   default: [],
 });
 
-export const searchBarValue = atom<any[]>({
+export const searchBarValue = atom<any>({
   key: "searchBarValue",
-  default: ["is:issue", "", ""],
+  default: {
+    isIssue: "is: issue",
+    isOpen: "",
+    myFilter: "",
+    author: "",
+    asignee: "",
+    label: "",
+    milestone: "",
+  },
+});
+
+export const userDataListState = atom<userType[]>({
+  key: "userDataList",
+  default: [],
+});
+
+export const pipeFunctionState = atom<{
+  [index: string]: Function;
+}>({
+  key: "pipeFunctionState",
+  default: {},
+});
+
+export const filteredData = atom<IssueType[]>({
+  key: "filteredData",
+  default: [],
 });

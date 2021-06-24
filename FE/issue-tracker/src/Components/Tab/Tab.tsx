@@ -7,7 +7,7 @@ import {
   toggleAddNewLabelState,
   toggleAddNewMilestoneState,
   labelDataListState,
-  milestoneDataState,
+  milestoneDataListState,
   currentTabState,
 } from "@/stores/tabAtoms";
 import LabelAddModal from "./TabModal/Label/LabelAddModal";
@@ -31,7 +31,7 @@ const Tab = () => {
 
   const setLabelDataList = useSetRecoilState(labelDataListState);
 
-  const setMilestoneList = useSetRecoilState(milestoneDataState);
+  const setMilestoneList = useSetRecoilState(milestoneDataListState);
 
   useEffect(() => {
     setLabelDataList(labelData as labelType[]);

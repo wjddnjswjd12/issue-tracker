@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil";
 import { TabAssets as Icon, LabelMilestoneTable as S } from "../../TabStyles";
-import { labelDataListState, milestoneDataState } from "@/stores/tabAtoms";
+import { labelDataListState, milestoneDataListState } from "@/stores/tabAtoms";
 import API from "@/Utils/api";
 
 type deleteButtonPropType = {
@@ -10,8 +10,9 @@ type deleteButtonPropType = {
 
 const DeleteButton = ({ id, type }: deleteButtonPropType) => {
   const [labelDataList, setLabelDataList] = useRecoilState(labelDataListState);
-  const [milestoneDataList, setMilestoneDataList] =
-    useRecoilState(milestoneDataState);
+  const [milestoneDataList, setMilestoneDataList] = useRecoilState(
+    milestoneDataListState
+  );
 
   const handleDeleteClick = () => {
     type === "label"

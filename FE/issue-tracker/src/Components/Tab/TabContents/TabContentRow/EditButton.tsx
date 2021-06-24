@@ -4,7 +4,7 @@ import {
   toggleEditMilestoneState,
   currentTabState,
   labelDataListState,
-  milestoneDataState,
+  milestoneDataListState,
   editLabelDataState,
   editMilestoneDataState,
 } from "@/stores/tabAtoms";
@@ -26,7 +26,7 @@ const EditButton = ({ id }: editButtonProp) => {
 
   const labelList = useRecoilValue(labelDataListState);
 
-  const milestoneList = useRecoilValue(milestoneDataState);
+  const milestoneList = useRecoilValue(milestoneDataListState);
 
   // const setLabelFontColor = useSetRecoilState(addnewLabelFontColor);
 
