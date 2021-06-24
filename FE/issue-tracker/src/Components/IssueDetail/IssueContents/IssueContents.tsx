@@ -14,7 +14,7 @@ type IssueDetailContentsType = {
   issue: IssueDetailType;
 };
 
-const IssueContents = ({ issue }: any) => {
+const IssueContents = ({ issue }: IssueDetailContentsType) => {
   const [newComment, setNewComment] = useRecoilState(newCommentState);
   const [disabled, setDisabled] = useState(true);
 
@@ -23,11 +23,11 @@ const IssueContents = ({ issue }: any) => {
     else setDisabled(false);
     setNewComment(e);
   };
-  console.log("d", issue);
+
   return (
     <S.IssueContentsWrapper>
       <S.IssueContents>
-        {/* {issue.comment.map((comment) => (
+        {issue.comments?.map((comment) => (
           <CommentBox key={comment.id} comment={comment} />
         ))}
         <S.TextAreaWrapper>
@@ -45,10 +45,10 @@ const IssueContents = ({ issue }: any) => {
           issueNumber={issue.number}
           newComment={newComment}
           disabled={disabled}
-        /> */}
+        />
       </S.IssueContents>
       <S.NavWrapper>
-        <SettingSideBar />
+        <SettingSideBar type="detailPage" />
         <IssueDeleteButton />
       </S.NavWrapper>
     </S.IssueContentsWrapper>

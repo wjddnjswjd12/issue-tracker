@@ -1,28 +1,58 @@
+import { useRecoilValue } from "recoil";
 import { SettingSideBar as S } from "@/Components/AtomicComponents/AtomicComponentsStyles";
+import { issueDetailState } from "@/stores/issueDetailAtoms";
 
 interface Props {
   id: string;
+  type: string;
 }
 
-const CheckedItem = ({ id }: Props) => {
+const CheckedItem = ({ id, type }: Props) => {
+  const issueDetailData = useRecoilValue(issueDetailState);
+
   const makeCheckedItem = () => {
     let item;
+
+    console.log(issueDetailData);
 
     if (id === "담당자") {
       item = (
         <S.CheckedItem>
-          <S.CheckedUser>
-            <S.CheckedUserImage />
-            유저
-          </S.CheckedUser>
+          {type === "detailPage" ? (
+            <>
+              {issueDetailData &&
+                issueDetailData.assignee?.map((user) => (
+                  <S.CheckedUser>
+                    <S.CheckedUserImage />
+                    {user}
+                  </S.CheckedUser>
+                ))}
+            </>
+          ) : (
+            <S.CheckedUser>
+              <S.CheckedUserImage />
+              유저
+            </S.CheckedUser>
+          )}
         </S.CheckedItem>
       );
     } else if (id === "레이블") {
       item = (
         <S.CheckedItem>
-          <S.CheckedLabelWrapper>
-            <S.CheckedLabel labelColor={"pink"}>swing</S.CheckedLabel>
-          </S.CheckedLabelWrapper>
+          {type === "detailPage" ? (
+            <S.CheckedLabelWrapper>
+              {issueDetailData &&
+                issueDetailData.labels?.map((label) => (
+                  <S.CheckedLabel labelColor={"pink"}>
+                    {label.title}
+                  </S.CheckedLabel>
+                ))}
+            </S.CheckedLabelWrapper>
+          ) : (
+            <S.CheckedLabelWrapper>
+              <S.CheckedLabel labelColor={"pink"}>swing</S.CheckedLabel>
+            </S.CheckedLabelWrapper>
+          )}
         </S.CheckedItem>
       );
     } else {

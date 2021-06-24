@@ -7,7 +7,8 @@ export type IssueDetailType = {
   milestone?: issueMilestoneType;
   labels?: issueLabelType[];
   open: boolean;
-  comment?: commentType[];
+  assignee?: authorType[];
+  comments?: commentType[];
 };
 
 export type commentType = {

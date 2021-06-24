@@ -6,7 +6,7 @@ import {
 import SettingSideBarItem from "./SettingSideBarItem";
 import { SettingSideBar as S } from "@/Components/AtomicComponents/AtomicComponentsStyles";
 
-const SettingSideBar = () => {
+const SettingSideBar = ({ type }: { type: string }) => {
   const dropDownCategories = useRecoilValue(dropDownCategoriesState);
   const setShowAssigneeDropDown = useSetRecoilState(showDropDownState.assignee);
   const setShowLabelDropDown = useSetRecoilState(showDropDownState.label);
@@ -26,16 +26,35 @@ const SettingSideBar = () => {
 
   return (
     <>
-      <S.Background isShow={showBackground} onClick={handleOnClick} />
-      <S.SettingSideBar>
-        {dropDownCategories.map((category) => (
-          <SettingSideBarItem
-            key={category}
-            id={category}
-            category={category}
-          />
-        ))}
-      </S.SettingSideBar>
+      {type === "detailPage" ? (
+        <>
+          <S.Background isShow={showBackground} onClick={handleOnClick} />
+          <S.SettingSideBar>
+            {dropDownCategories.map((category) => (
+              <SettingSideBarItem
+                key={category}
+                id={category}
+                category={category}
+                type={type}
+              />
+            ))}
+          </S.SettingSideBar>
+        </>
+      ) : (
+        <>
+          <S.Background isShow={showBackground} onClick={handleOnClick} />
+          <S.SettingSideBar>
+            {dropDownCategories.map((category) => (
+              <SettingSideBarItem
+                key={category}
+                id={category}
+                category={category}
+                type={type}
+              />
+            ))}
+          </S.SettingSideBar>
+        </>
+      )}
     </>
   );
 };

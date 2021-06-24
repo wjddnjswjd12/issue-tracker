@@ -16,7 +16,7 @@ const Description = ({ issue }: DescriptionProps) => {
   const description = `이슈가 ${issue.created_time} 전에 ${
     issue.author.name
   }님에 의해 ${issueState}습니다 • 코멘트 ${
-    issue.comment?.length ? issue.comment?.length : 0
+    issue.comments?.length ? issue.comments.length : 0
   }개`;
   return (
     <S.Description>

@@ -98,6 +98,9 @@ const SettingSideBar = {
     justify-content: space-between;
   `,
   CheckedItem: styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
     margin-top: 20px;
     input {
       width: 100%;

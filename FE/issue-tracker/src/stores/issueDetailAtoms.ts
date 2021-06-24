@@ -12,6 +12,7 @@ export const issueDetailState = atom<IssueDetailType>({
       name: "",
       image_url: "",
     },
+    assignee: [],
     created_time: "",
     milestone: {
       id: 0,
@@ -21,7 +22,7 @@ export const issueDetailState = atom<IssueDetailType>({
     },
     labels: [],
     open: false,
-    comment: [],
+    comments: [],
   },
 });
 

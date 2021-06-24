@@ -6,16 +6,17 @@ import { SettingSideBar as S } from "@/Components/AtomicComponents/AtomicCompone
 interface Props {
   id: string;
   category: string;
+  type: string;
 }
 
-const SettingSideBarItem = ({ id, category }: Props) => {
+const SettingSideBarItem = ({ id, category, type }: Props) => {
   return (
     <S.SettingSideBarItem id={id}>
       <S.SettingSideBarTitle>
         {category}
         <PlusButton id={id} />
       </S.SettingSideBarTitle>
-      <CheckedItem id={id} />
+      <CheckedItem type={type} id={id} />
       <SettingDropDown id={id} />
     </S.SettingSideBarItem>
   );

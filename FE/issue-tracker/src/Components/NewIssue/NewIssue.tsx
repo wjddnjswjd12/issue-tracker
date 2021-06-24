@@ -53,7 +53,7 @@ const NewIssue = () => {
             />
           </S.BodyContentsWrapper>
           <S.NavWrapper>
-            <SettingSideBar />
+            <SettingSideBar type="newPage" />
           </S.NavWrapper>
         </S.NewIssueBody>
         <S.ButtonsWrapper>

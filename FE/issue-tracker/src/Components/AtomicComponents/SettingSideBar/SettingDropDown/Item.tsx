@@ -1,9 +1,6 @@
 import { useRecoilValue } from "recoil";
-import {
-  usersState,
-  labelsState,
-  mileStonesState,
-} from "@/stores/settingSideBarAtoms";
+import { userDataListState } from "@/stores/homeAtoms";
+import { labelDataListState, milestoneDataListState } from "@/stores/tabAtoms";
 import MyIcon from "./MyIcon";
 import ItemCheckBox from "./ItemCheckBox";
 import { SettingSideBar as S } from "@/Components/AtomicComponents/AtomicComponentsStyles";
@@ -13,9 +10,9 @@ interface Props {
 }
 
 const Item = ({ id }: Props) => {
-  const users = useRecoilValue(usersState);
-  const labels = useRecoilValue(labelsState);
-  const mileStones = useRecoilValue(mileStonesState);
+  const users = useRecoilValue(userDataListState);
+  const labels = useRecoilValue(labelDataListState);
+  const mileStones = useRecoilValue(milestoneDataListState);
 
   const makeItems = () => {
     let items;
@@ -44,7 +41,11 @@ const Item = ({ id }: Props) => {
         <S.Item>
           <S.LeftItems>
             <S.ItemText>{mileStone.title}</S.ItemText>
-            <S.DueDate> Due by {mileStone.due_date}</S.DueDate>
+            <S.DueDate>
+              {mileStone.due_date
+                ? `Due by ${mileStone.due_date}`
+                : "지정된 마감일 없음"}
+            </S.DueDate>
           </S.LeftItems>
           <ItemCheckBox />
         </S.Item>

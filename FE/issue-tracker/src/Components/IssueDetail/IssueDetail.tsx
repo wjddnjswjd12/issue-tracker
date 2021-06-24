@@ -33,7 +33,9 @@ const IssueDetail = ({ match }: RouteComponentProps<MatchParams>) => {
         {issueDetailData && (
           <IssueDetailHeader issue={issueDetailData as IssueDetailType} />
         )}
-        {/* {issueDetailData && <IssueContents issue={issueDetailData} />} */}
+        {issueDetailData && (
+          <IssueContents issue={issueDetailData as IssueDetailType} />
+        )}
         {loading && <div>loading..</div>}
       </S.IssueDetail>
     </>
