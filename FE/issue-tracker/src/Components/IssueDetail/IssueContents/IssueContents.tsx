@@ -8,9 +8,13 @@ import Editor from "@/Components/AtomicComponents/Editor/Editor";
 import SubmitButton from "./SubmitButton";
 import UserImage from "./UserImage";
 import { IssueDetail as S } from "@/Components/IssueDetail/IssueDetailStyles";
+import { IssueDetailType } from "../issueDetailTypes";
 
-const IssueContents = () => {
-  const issue = useRecoilValue(issueDetailState);
+type IssueDetailContentsType = {
+  issue: IssueDetailType;
+};
+
+const IssueContents = ({ issue }: any) => {
   const [newComment, setNewComment] = useRecoilState(newCommentState);
   const [disabled, setDisabled] = useState(true);
 
@@ -19,11 +23,11 @@ const IssueContents = () => {
     else setDisabled(false);
     setNewComment(e);
   };
-
+  console.log("d", issue);
   return (
     <S.IssueContentsWrapper>
       <S.IssueContents>
-        {issue.comment.map((comment) => (
+        {/* {issue.comment.map((comment) => (
           <CommentBox key={comment.id} comment={comment} />
         ))}
         <S.TextAreaWrapper>
@@ -41,7 +45,7 @@ const IssueContents = () => {
           issueNumber={issue.number}
           newComment={newComment}
           disabled={disabled}
-        />
+        /> */}
       </S.IssueContents>
       <S.NavWrapper>
         <SettingSideBar />

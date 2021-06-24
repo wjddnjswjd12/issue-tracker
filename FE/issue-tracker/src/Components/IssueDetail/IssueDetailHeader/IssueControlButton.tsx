@@ -13,14 +13,12 @@ interface Props {
 
 const IssueControlButton = ({ innerText }: Props) => {
   const [editTitleFlag, setEditTitleFlag] = useRecoilState(editTitleFlagState);
-  const issue = useRecoilValue(issueDetailState);
 
   const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const editButton = (e.target as HTMLElement).closest("button")?.dataset
       .innerText;
     if (editButton === "제목 편집") {
       if (editTitleFlag === true) {
-        console.log(issue.title);
         // 이슈 업데이트 api 사용
       }
       setEditTitleFlag((prev) => !prev);

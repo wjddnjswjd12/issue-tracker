@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { IssueTable as S } from "../../../../HomeStyles";
 import CheckButton from "./CheckButton";
 import IssueDescription from "./IssueDescription";
@@ -17,7 +18,9 @@ const IssueTableRow = ({ issue }: IssueTableRowProps) => {
         <CheckButton issueId={issue.id} />
         <S.IssueInfoDiv>
           <S.IssueInfoTop>
-            <IssueTitle issueTitle={issue.title} />
+            <Link to={`/issue/detail/${issue.id}`}>
+              <IssueTitle issueTitle={issue.title} />
+            </Link>
             <IssueLabel labels={issue.labels} />
           </S.IssueInfoTop>
           <IssueDescription

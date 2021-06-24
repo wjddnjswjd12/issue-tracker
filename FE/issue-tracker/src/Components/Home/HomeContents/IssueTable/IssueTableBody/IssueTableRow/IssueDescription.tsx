@@ -17,7 +17,6 @@ const IssueDescription = ({
   createdTime,
   milestone,
 }: IssueDescriptionProps) => {
-  console.log(author);
   return (
     <S.IssueInfoBottom>
       <span>{issueNumber}</span>

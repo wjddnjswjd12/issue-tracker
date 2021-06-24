@@ -6,8 +6,7 @@ import {
 import TextArea from "@/Components/AtomicComponents/TextArea/TextArea";
 import { IssueDetail as S } from "@/Components/IssueDetail/IssueDetailStyles";
 
-const Title = () => {
-  const issue = useRecoilValue(issueDetailState);
+const Title = ({ title }: { title: string }) => {
   const editTitleFlag = useRecoilValue(editTitleFlagState);
   const [issueTitle, setIssueTitle] = useRecoilState(issueDetailState);
 
@@ -16,13 +15,9 @@ const Title = () => {
   };
 
   return editTitleFlag ? (
-    <TextArea
-      placeholder={issue.title}
-      rows={1}
-      handleOnChange={handleOnChange}
-    />
+    <TextArea placeholder={title} rows={1} handleOnChange={handleOnChange} />
   ) : (
-    <S.Title>{issue.title}</S.Title>
+    <S.Title>{title}</S.Title>
   );
 };
 

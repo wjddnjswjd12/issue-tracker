@@ -14,7 +14,7 @@ const Router = () => {
         <Route exact path="/issue" component={MainPage} />
         <Route exact path="/" component={Login} />
         <Route path="/issue/tab" component={Tab} />
-        <Route path="/issue/detail" component={IssueDetail} />
+        <Route path="/issue/detail/:id" component={IssueDetail} />
         <Route path="/issue/new" component={NewIssue} />
         <Route path="/callback" component={Callback} />
         <Route path="/recoilTest" component={MyRecoilTest} />

@@ -1,5 +1,3 @@
-import { NamedTupleMember } from "typescript";
-
 export type userType = {
   id: number | undefined;
   name: string | undefined;

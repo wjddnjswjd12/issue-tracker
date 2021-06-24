@@ -1,10 +1,7 @@
-import { useRecoilValue } from "recoil";
-import { issueDetailState } from "@/stores/issueDetailAtoms";
 import { IssueDetail as S } from "@/Components/IssueDetail/IssueDetailStyles";
 
-const IssueNumber = () => {
-  const issue = useRecoilValue(issueDetailState);
-  return <S.IssueNumber>#{issue.number}</S.IssueNumber>;
+const IssueNumber = ({ issueNo }: { issueNo: number }) => {
+  return <S.IssueNumber>#{issueNo}</S.IssueNumber>;
 };
 
 export default IssueNumber;

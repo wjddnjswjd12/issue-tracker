@@ -9,11 +9,14 @@ const Callback = ({ history, location }: RouteComponentProps) => {
 
       try {
         const jwt_token = await fetch(
-          `/user/login/oauth/github/code=${code}`
+          `http://3.37.161.3/user/login/oauth/github?code=${code}`
         ).then((res) => res.json());
+
+        console.log(jwt_token.data);
 
         // setLoginState 해야함
         // setUserInfo 해야함
+        history.push("/issue");
       } catch (e) {
         //
       }

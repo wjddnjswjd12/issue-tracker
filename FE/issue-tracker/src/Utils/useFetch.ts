@@ -16,6 +16,7 @@ const useFetch = <T>(path: string) => {
       .then((response) => {
         setLoading(false);
         setData(response.data);
+        console.log(response.data);
       })
       .catch((error) => {
         setLoading(false);

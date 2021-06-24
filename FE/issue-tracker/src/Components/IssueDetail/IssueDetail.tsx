@@ -1,17 +1,40 @@
+import { useEffect } from "react";
+import { useSetRecoilState } from "recoil";
+import { RouteComponentProps } from "react-router-dom";
 import IssueDetailHeader from "./IssueDetailHeader/IssueDetailHeader";
 import IssueContents from "./IssueContents/IssueContents";
 import Header from "@/Components/Header/Header";
 import { IssueDetail as S } from "@/Components/IssueDetail/IssueDetailStyles";
+import useFetch from "@/Utils/useFetch";
+import { issueDetailState } from "@/stores/issueDetailAtoms";
+import { IssueDetailType } from "./issueDetailTypes";
 
-const IssueDetail = ({ location }: any) => {
-  console.log(location);
-  //useEffect로 set된 이슈넘버를 get해옴. 그 후에 issueDetailState에 저장
+interface MatchParams {
+  id: string;
+}
+
+const IssueDetail = ({ match }: RouteComponentProps<MatchParams>) => {
+  const { id } = match.params;
+
+  const setIssueDetailDatas = useSetRecoilState(issueDetailState);
+
+  const { fetchedData: issueDetailData, loading } = useFetch(`/issue/${id}`);
+
+  useEffect(() => {
+    setIssueDetailDatas(issueDetailData as IssueDetailType);
+  }, [issueDetailData]);
+
+  console.log("why", issueDetailData);
+
   return (
     <>
       <Header />
       <S.IssueDetail>
-        <IssueDetailHeader />
-        <IssueContents />
+        {issueDetailData && (
+          <IssueDetailHeader issue={issueDetailData as IssueDetailType} />
+        )}
+        {/* {issueDetailData && <IssueContents issue={issueDetailData} />} */}
+        {loading && <div>loading..</div>}
       </S.IssueDetail>
     </>
   );

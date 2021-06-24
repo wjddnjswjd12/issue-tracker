@@ -21,10 +21,6 @@ export const getAuthorFilteredData =
   (clickedAuthor: string) => (issues: IssueType[]) =>
     issues.filter((issue) => issue.author.name === clickedAuthor);
 
-type categoryFilterObj = {
-  [index: string]: (param: string) => Function;
-};
-
 // export const getAssigneeFilteredData =
 //   (clickedAsignee: string) => (issues: IssueType[]) =>
 //     issues.filter((issue) => issue.assignee === clickedAsignee);
