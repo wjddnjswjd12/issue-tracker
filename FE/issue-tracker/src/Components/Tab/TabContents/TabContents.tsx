@@ -1,5 +1,5 @@
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { useRecoilValue, useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { LabelMilestoneTable as S } from "../TabStyles";
 import TabContentRow from "./TabContentRow/TabContentRow";
 import TabContentsHeader from "./TabContentsHeader";
@@ -8,30 +8,31 @@ import {
   labelDataListState,
   milestoneDataState,
 } from "@/stores/tabAtoms";
-import useFetch from "@/Utils/useFetch";
 import { milestoneType, labelType } from "../tabTypes";
-import { useEffect } from "react";
 
-const TabContents = () => {
+type tabContentsPropType = {
+  loading: boolean | null;
+};
+
+const TabContents = ({ loading }: tabContentsPropType) => {
   const tabState = useRecoilValue(currentTabState);
 
   return (
     <S.IssueTable>
       <TabContentsHeader />
       <S.TableBody>
-        {tabState === "label" ? <LabelContents /> : <MilestoneContents />}
+        {tabState === "label" ? (
+          <LabelContents loading={loading} />
+        ) : (
+          <MilestoneContents loading={loading} />
+        )}
       </S.TableBody>
     </S.IssueTable>
   );
 };
 
-const MilestoneContents = () => {
-  const { fetchedData, loading } = useFetch("/milestone");
-  const [milestoneList, setMilestoneList] = useRecoilState(milestoneDataState);
-
-  useEffect(() => {
-    setMilestoneList(fetchedData as milestoneType[]);
-  }, [fetchedData]);
+const MilestoneContents = ({ loading }: tabContentsPropType) => {
+  const milestoneList = useRecoilValue(milestoneDataState);
 
   return (
     <>
@@ -44,13 +45,8 @@ const MilestoneContents = () => {
   );
 };
 
-const LabelContents = () => {
-  const { fetchedData, loading } = useFetch("/label");
-  const [labelDataList, setLabelDataList] = useRecoilState(labelDataListState);
-
-  useEffect(() => {
-    setLabelDataList(fetchedData as labelType[]);
-  }, [fetchedData]);
+const LabelContents = ({ loading }: tabContentsPropType) => {
+  const labelDataList = useRecoilValue(labelDataListState);
 
   return (
     <>

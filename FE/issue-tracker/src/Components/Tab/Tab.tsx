@@ -1,4 +1,4 @@
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import Header from "@/Components/Header/Header";
 import TabHeader from "./TabHeader/TabHeader";
 import TabContents from "./TabContents/TabContents";
@@ -6,17 +6,37 @@ import { TabComponents as S } from "./TabStyles";
 import {
   toggleAddNewLabelState,
   toggleAddNewMilestoneState,
+  labelDataListState,
+  milestoneDataState,
   currentTabState,
 } from "@/stores/tabAtoms";
 import LabelAddModal from "./TabModal/Label/LabelAddModal";
 import MilestoneAddModal from "./TabModal/Milestone/MilestoneAddModal";
+import useFetch from "@/Utils/useFetch";
+import { milestoneType, labelType } from "./tabTypes";
+import { useEffect } from "react";
 
 const Tab = () => {
   const toggleAddLabelModalState = useRecoilValue(toggleAddNewLabelState);
+
   const toggleAddMilestoneModalState = useRecoilValue(
     toggleAddNewMilestoneState
   );
   const tabState = useRecoilValue(currentTabState);
+
+  const { fetchedData: labelData, loading: labelLoading } = useFetch("/label");
+
+  const { fetchedData: milestoneData, loading: milestoneLoading } =
+    useFetch("/milestone");
+
+  const setLabelDataList = useSetRecoilState(labelDataListState);
+
+  const setMilestoneList = useSetRecoilState(milestoneDataState);
+
+  useEffect(() => {
+    setLabelDataList(labelData as labelType[]);
+    setMilestoneList(milestoneData as milestoneType[]);
+  }, [labelData, milestoneData]);
 
   return (
     <>
@@ -26,12 +46,12 @@ const Tab = () => {
         {tabState === "label" ? (
           <>
             {toggleAddLabelModalState && <LabelAddModal />}
-            <TabContents />
+            <TabContents loading={labelLoading} />
           </>
         ) : (
           <>
             {toggleAddMilestoneModalState && <MilestoneAddModal />}
-            <TabContents />
+            <TabContents loading={milestoneLoading} />
           </>
         )}
       </S.TabContainer>
