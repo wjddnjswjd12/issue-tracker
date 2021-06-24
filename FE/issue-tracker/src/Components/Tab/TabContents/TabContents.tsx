@@ -37,7 +37,7 @@ const MilestoneContents = () => {
     <>
       {milestoneList &&
         (milestoneList as milestoneType[]).map((milestone, i) => (
-          <TabContentRow id={i} milestoneData={milestone} key={i} />
+          <TabContentRow milestoneData={milestone} key={i} />
         ))}
       {loading && <CircularProgress />}
     </>
@@ -56,7 +56,7 @@ const LabelContents = () => {
     <>
       {labelDataList &&
         (labelDataList as labelType[]).map((label, i) => (
-          <TabContentRow id={i} labelData={label} key={i} />
+          <TabContentRow labelData={label} key={i} />
         ))}
       {loading && <CircularProgress />}
     </>

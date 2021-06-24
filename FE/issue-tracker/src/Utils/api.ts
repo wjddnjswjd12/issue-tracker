@@ -22,6 +22,15 @@ const API = {
       method: "PUT",
       body: JSON.stringify(editData),
     }),
+
+  delete: (path: string) =>
+    fetch(`${END_POINT}${path}`, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "DELETE",
+    }),
 };
 
 export default API;
