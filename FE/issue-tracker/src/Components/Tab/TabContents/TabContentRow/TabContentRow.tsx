@@ -17,12 +17,12 @@ import MilestoneEditModal from "../../TabModal/Milestone/MilestoneEditModal";
 import { milestoneType, labelType } from "../../tabTypes";
 
 type tabContentProp = {
-  id?: number;
   milestoneData?: milestoneType;
   labelData?: labelType;
+  id?: number;
 };
 
-const TabContentRow = ({ id, milestoneData, labelData }: tabContentProp) => {
+const TabContentRow = ({ milestoneData, labelData }: tabContentProp) => {
   const EditLabelState = useRecoilValue(toggleEditLabelState);
 
   const EditMilestoneState = useRecoilValue(toggleEditMilestoneState);
@@ -71,7 +71,7 @@ const LabelRow = ({ id, labelData }: tabContentProp) => {
       </S.TableRowContentLeft>
       <S.TableRowButtonDiv>
         <EditButton id={id} />
-        <DeleteButton />
+        <DeleteButton id={id} type="label" />
       </S.TableRowButtonDiv>
     </S.TableRow>
   );
@@ -92,7 +92,7 @@ const MilestoneRow = ({ id, milestoneData }: tabContentProp) => {
       <S.TableRowContentRight>
         <S.TableRowButtonDiv>
           <EditButton id={id} />
-          <DeleteButton />
+          <DeleteButton id={id} type="milestone" />
         </S.TableRowButtonDiv>
         <RangeBar />
         <RangeDescription
