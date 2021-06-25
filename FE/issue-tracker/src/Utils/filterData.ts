@@ -21,6 +21,11 @@ export const getAuthorFilteredData =
   (clickedAuthor: string) => (issues: IssueType[]) =>
     issues.filter((issue) => issue.author.name === clickedAuthor);
 
-// export const getAssigneeFilteredData =
-//   (clickedAsignee: string) => (issues: IssueType[]) =>
-//     issues.filter((issue) => issue.assignee === clickedAsignee);
+export const getAssigneeFilteredData =
+  (clickedAsignee: string) => (issues: IssueType[]) =>
+    issues.filter((issue) => {
+      const filterAssignee = issue.assignee.find(
+        (user) => user.name === clickedAsignee
+      );
+      return filterAssignee;
+    });

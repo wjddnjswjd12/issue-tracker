@@ -10,6 +10,11 @@ export type authorType = {
   image_url: string;
 };
 
+export type assigneeType = {
+  id: number;
+  name: string;
+  image_url: string;
+};
 export type issueMilestoneType = {
   id: number;
   title: string;
@@ -29,6 +34,7 @@ export type IssueType = {
   number: number;
   author: authorType;
   created_time: string;
+  assignee: assigneeType[];
   milestone: issueMilestoneType;
   labels: issueLabelType[];
   open: boolean;

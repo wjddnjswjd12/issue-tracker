@@ -10,7 +10,7 @@ export const newIssueState = atom<newIssueType>({
   key: "newIssueState",
   default: {
     title: "",
-    assignee_id: [],
+    assignee_ids: [],
     milestone_id: 0,
     label_ids: [],
     comment: "",

@@ -4,7 +4,7 @@ const API = {
   withAuth: (path: string, postData: object, token: string) =>
     fetch(`${END_POINT}${path}`, {
       headers: {
-        Authorization: token,
+        Authorization: localStorage.getItem("token") as string,
         Accept: "application/json",
         "Content-Type": "application/json",
       },
@@ -12,11 +12,15 @@ const API = {
       body: JSON.stringify(postData),
     }),
 
-  get: (urlPath: string) => fetch(`${END_POINT}${urlPath}`),
+  get: (urlPath: string, token: string) =>
+    fetch(`${END_POINT}${urlPath}`, {
+      headers: { Authorization: localStorage.getItem("token") as string },
+    }),
 
-  post: (path: string, postData: object) =>
+  post: (path: string, postData: object, token: string) =>
     fetch(`${END_POINT}${path}`, {
       headers: {
+        Authorization: localStorage.getItem("token") as string,
         Accept: "application/json",
         "Content-Type": "application/json",
       },
@@ -24,9 +28,10 @@ const API = {
       body: JSON.stringify(postData),
     }),
 
-  put: (path: string, editData: object) =>
+  put: (path: string, editData: object, token: string) =>
     fetch(`${END_POINT}${path}`, {
       headers: {
+        Authorization: localStorage.getItem("token") as string,
         Accept: "application/json",
         "Content-Type": "application/json",
       },
@@ -34,9 +39,10 @@ const API = {
       body: JSON.stringify(editData),
     }),
 
-  delete: (path: string) =>
+  delete: (path: string, token: string) =>
     fetch(`${END_POINT}${path}`, {
       headers: {
+        Authorization: localStorage.getItem("token") as string,
         Accept: "application/json",
         "Content-Type": "application/json",
       },

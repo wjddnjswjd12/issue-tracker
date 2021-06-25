@@ -4,25 +4,29 @@ import {
   milestoneDataListState,
   addMilestoneDataState,
 } from "@/stores/tabAtoms";
-import { useSetRecoilState, useRecoilState } from "recoil";
+import { useSetRecoilState, useRecoilState, useRecoilValue } from "recoil";
 import API from "@/Utils/api";
+import { userLoggedIn } from "@/stores/loginAtoms";
 
 const MilestoneAddModal = () => {
   const [addMilestoneData, setAddMilestoneData] = useRecoilState(
     addMilestoneDataState
   );
-
+  const loginData = useRecoilValue(userLoggedIn);
   const setMilestoneAddState = useSetRecoilState(toggleAddNewMilestoneState);
   const [milestoneData, setMilestoneData] = useRecoilState(
     milestoneDataListState
   );
 
   const handleEditCloseBtnClick = () => {
-    API.post("/milestone", addMilestoneData).then((res) => {
-      if (res.ok) setMilestoneData([...milestoneData, addMilestoneData]);
-    });
+    API.post("/milestone", addMilestoneData, loginData.userToken).then(
+      (res) => {
+        if (res.ok) setMilestoneData([...milestoneData, addMilestoneData]);
+      }
+    );
 
     setMilestoneAddState(false);
+    API.get("/label", loginData.userToken);
   };
 
   const onChangeMilestoneInput = (e: React.ChangeEvent<HTMLInputElement>) => {

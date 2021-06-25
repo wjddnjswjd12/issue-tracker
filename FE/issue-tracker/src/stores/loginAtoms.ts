@@ -7,8 +7,8 @@ export const userLoggedIn = atom<{
 }>({
   key: "userLoggedIn",
   default: {
-    userName: "Jenny",
+    userName: "",
     userToken: "",
-    userProfileImg: "https://avatars.githubusercontent.com/u/71004200?v=4",
+    userProfileImg: "",
   },
 });

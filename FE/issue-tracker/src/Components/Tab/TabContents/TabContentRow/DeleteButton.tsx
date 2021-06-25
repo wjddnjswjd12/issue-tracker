@@ -1,7 +1,8 @@
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { TabAssets as Icon, LabelMilestoneTable as S } from "../../TabStyles";
 import { labelDataListState, milestoneDataListState } from "@/stores/tabAtoms";
 import API from "@/Utils/api";
+import { userLoggedIn } from "@/stores/loginAtoms";
 
 type deleteButtonPropType = {
   id?: number;
@@ -13,23 +14,27 @@ const DeleteButton = ({ id, type }: deleteButtonPropType) => {
   const [milestoneDataList, setMilestoneDataList] = useRecoilState(
     milestoneDataListState
   );
-
+  const loginData = useRecoilValue(userLoggedIn);
   const handleDeleteClick = () => {
     type === "label"
-      ? API.delete(`/label/${id}`).then((res) => {
+      ? API.delete(`/label/${id}`, loginData.userToken).then((res) => {
           if (res.ok) {
             const modified = labelDataList.filter((label) => label.id !== id);
             setLabelDataList(modified);
+            API.get(`/label`, loginData.userToken);
           }
         })
-      : API.delete(`/milestone/${id}`).then((res) => {
+      : API.delete(`/milestone/${id}`, loginData.userToken).then((res) => {
           if (res.ok) {
             const modified = milestoneDataList.filter(
               (mimlestone) => mimlestone.id !== id
             );
             setMilestoneDataList(modified);
+            API.get(`/milestone`, loginData.userToken);
           }
         });
+    API.get(`/label`, loginData.userToken);
+    API.get(`/milestone`, loginData.userToken);
   };
 
   return (

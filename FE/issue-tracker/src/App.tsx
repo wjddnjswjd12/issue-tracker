@@ -1,4 +1,5 @@
 import { StylesProvider } from "@material-ui/core/styles";
+
 import { RecoilRoot } from "recoil";
 import { Suspense } from "react";
 import Router from "@/Routes/Router";

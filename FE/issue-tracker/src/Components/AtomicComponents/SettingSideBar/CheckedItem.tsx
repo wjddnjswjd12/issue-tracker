@@ -22,11 +22,8 @@ const CheckedItem = ({ id, type }: Props) => {
     (mile) => mile.id === newIssueDataState.milestone_id
   );
 
-  console.log("레이블", labelDatas);
   const makeCheckedItem = () => {
     let item;
-
-    console.log("he", issueDetailData);
 
     if (id === "담당자") {
       item = (
@@ -37,13 +34,13 @@ const CheckedItem = ({ id, type }: Props) => {
                 issueDetailData.assignee?.map((user) => (
                   <S.CheckedUser>
                     <S.CheckedUserImage />
-                    {user}
+                    {user.name}
                   </S.CheckedUser>
                 ))}
             </>
           ) : (
             <>
-              {newIssueDataState.assignee_id.map((assigneeId) => {
+              {newIssueDataState.assignee_ids.map((assigneeId) => {
                 const addedAssignee = userDatas.find(
                   (user) => user.id === assigneeId
                 );

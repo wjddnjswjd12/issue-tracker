@@ -5,7 +5,8 @@ import {
   labelDataListState,
   editLabelDataState,
 } from "@/stores/tabAtoms";
-import { useSetRecoilState, useRecoilState } from "recoil";
+import { userLoggedIn } from "@/stores/loginAtoms";
+import { useSetRecoilState, useRecoilState, useRecoilValue } from "recoil";
 import EditLabelView from "./EditLabelView";
 import API from "@/Utils/api";
 
@@ -32,6 +33,8 @@ const LabelEditModal = ({ id }: LabelEditProps) => {
 
   const [labelDataList, setLabelDataList] = useRecoilState(labelDataListState);
 
+  const loginData = useRecoilValue(userLoggedIn);
+
   const handleEditCancleBtnClick = () => {
     setLabelEditState({
       isOpen: false,
@@ -48,7 +51,7 @@ const LabelEditModal = ({ id }: LabelEditProps) => {
   };
 
   const handleEditCloseBtnClick = () => {
-    API.put(`/label/${id}`, editLabelData).then((res) => {
+    API.put(`/label/${id}`, editLabelData, loginData.userToken).then((res) => {
       if (res.ok) {
         console.log(res);
         const modifiedArray = labelDataList.map((label) =>

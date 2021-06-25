@@ -4,8 +4,9 @@ import {
   milestoneDataListState,
   editMilestoneDataState,
 } from "@/stores/tabAtoms";
-import { useSetRecoilState, useRecoilState } from "recoil";
+import { useSetRecoilState, useRecoilState, useRecoilValue } from "recoil";
 import API from "@/Utils/api";
+import { userLoggedIn } from "@/stores/loginAtoms";
 
 type MilesEditProps = {
   id?: number;
@@ -21,6 +22,7 @@ const MilestoneEditModal = ({ id }: MilesEditProps) => {
   const [milestoneData, setMilestoneData] = useRecoilState(
     milestoneDataListState
   );
+  const loginData = useRecoilValue(userLoggedIn);
 
   const onChangeMilestoneInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -28,14 +30,16 @@ const MilestoneEditModal = ({ id }: MilesEditProps) => {
   };
 
   const handleEditCloseBtnClick = () => {
-    API.put(`/milestone/${id}`, editMilestoneData).then((res) => {
-      if (res.ok) {
-        const modifiedArray = milestoneData.map((mile) =>
-          mile.id === id ? editMilestoneData : mile
-        );
-        setMilestoneData(modifiedArray);
+    API.put(`/milestone/${id}`, editMilestoneData, loginData.userToken).then(
+      (res) => {
+        if (res.ok) {
+          const modifiedArray = milestoneData.map((mile) =>
+            mile.id === id ? editMilestoneData : mile
+          );
+          setMilestoneData(modifiedArray);
+        }
       }
-    });
+    );
 
     setMilestoneEditState({
       isOpen: false,

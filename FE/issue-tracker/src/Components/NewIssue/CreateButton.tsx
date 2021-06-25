@@ -14,7 +14,7 @@ const CreateButton = () => {
     if (e.target.childNodes[0].disabled) e.preventDefault();
 
     API.withAuth("/issue", newIssue, logInData.userToken);
-    API.get("/issue");
+    API.get("/issue", logInData.userToken);
   };
 
   return (

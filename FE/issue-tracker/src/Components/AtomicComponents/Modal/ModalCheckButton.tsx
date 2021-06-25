@@ -4,6 +4,7 @@ import {
   getLabelFilteredData,
   getMilestoneFilteredData,
   getAuthorFilteredData,
+  getAssigneeFilteredData,
 } from "@/Utils/filterData";
 
 type filterItemObjType = {
@@ -85,6 +86,12 @@ const ModalCheckButton = ({ data, modalType, modalTitle }: any) => {
         ...pipeFnsState,
         author: getAuthorFilteredData(clickedItem),
       });
+    else if (clickedModal === "담당자") {
+      setPipeFnsState({
+        ...pipeFnsState,
+        assignee: getAssigneeFilteredData(clickedItem),
+      });
+    }
   };
 
   return modalType === "filter" ? (

@@ -14,6 +14,11 @@ export const checkedItemsCountState = selector({
   },
 });
 
+export const openCloseIssueToggle = atom({
+  key: "OpenCloseIssueToggle",
+  default: true,
+});
+
 export const filterModalOpenState = atom({
   key: "filterModalOpenState",
   default: false,
@@ -35,7 +40,6 @@ export const categoryModalOpenState = atom<{
   },
 });
 
-//상태 수정을 띄울지 담당자,레이블,마일스톤,작성자를 띄울지
 export const editOpenCloseIssueModalState = atom({
   key: "editOpenCloseIssueModalState",
   default: false,

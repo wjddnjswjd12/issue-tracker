@@ -1,4 +1,4 @@
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
 import { AddNewModal as S, TabAssets as Icon } from "../../TabStyles";
 import {
   toggleAddNewLabelState,
@@ -6,6 +6,7 @@ import {
   labelDataListState,
   addLabelDataState,
 } from "@/stores/tabAtoms";
+import { userLoggedIn } from "@/stores/loginAtoms";
 import NewLabelView from "./NewLabelView";
 import API from "@/Utils/api";
 
@@ -15,16 +16,17 @@ type addModalPropType = {
 
 const LabelAddModal = () => {
   const [addLabelData, setAddLabelData] = useRecoilState(addLabelDataState);
-
+  const loginData = useRecoilValue(userLoggedIn);
   const [labelDataList, setLabelDataList] = useRecoilState(labelDataListState);
 
   const setAddNewLabelState = useSetRecoilState(toggleAddNewLabelState);
 
   const handleAddLabelClick = () => {
-    API.post("/label", addLabelData).then((res) => {
+    API.post("/label", addLabelData, loginData.userToken).then((res) => {
       if (res.ok) setLabelDataList([...labelDataList, addLabelData]);
     });
     setAddNewLabelState(false);
+    API.get("/label", loginData.userToken);
   };
 
   const onLabelInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

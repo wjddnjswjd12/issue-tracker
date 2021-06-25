@@ -3,7 +3,7 @@ export type newIssueType = {
   comment: string;
   label_ids: number[];
   milestone_id: number;
-  assignee_id: number[];
+  assignee_ids: number[];
 };
 
 export type commentType = {

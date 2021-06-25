@@ -18,21 +18,21 @@ const ItemCheckBox = ({
   console.log("바뀜", newIssue);
   const handleCheckClick = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (header === "담당자") {
-      const checkAssignee = newIssue.assignee_id.find(
+      const checkAssignee = newIssue.assignee_ids.find(
         (assigneeId: any) => assigneeId === id
       );
       if (!checkAssignee) {
         setNewIssue({
           ...newIssue,
-          assignee_id: [...newIssue.assignee_id, id as number],
+          assignee_ids: [...newIssue.assignee_ids, id as number],
         });
       } else {
-        const modifiedAssigneeArray = newIssue.assignee_id.filter(
+        const modifiedAssigneeArray = newIssue.assignee_ids.filter(
           (assigneeId) => assigneeId !== id
         );
         setNewIssue({
           ...newIssue,
-          assignee_id: modifiedAssigneeArray,
+          assignee_ids: modifiedAssigneeArray,
         });
       }
     } else if (header === "레이블") {
